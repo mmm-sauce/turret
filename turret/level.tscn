@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://4rcffy1rk84u"]
+
+[node name="Level" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Spawner" type="Node2D" parent="."]
