@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://dm714akg7kum1"]
+[gd_scene load_steps=2 format=3 uid="uid://dm714akg7kum1"]
+
+[ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
 
 [node name="Main" type="Node2D"]
+
+[node name="cannon" parent="." instance=ExtResource("1_hxedp")]
+position = Vector2(540, 960)
