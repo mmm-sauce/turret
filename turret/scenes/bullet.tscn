@@ -4,19 +4,20 @@
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_id1oa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nptr3"]
-radius = 12.0
+radius = 17.995
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_id1oa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708
+scale = Vector2(1.28, 1.28)
 texture = ExtResource("1_crv01")
 region_enabled = true
 region_rect = Rect2(2688, 1536, 128, 128)
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(26, 0)
+position = Vector2(31.005, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_nptr3")
