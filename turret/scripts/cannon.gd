@@ -4,22 +4,26 @@ extends CharacterBody2D
 const turnSpeed = 5
 var barrel = 1
 
+var shots = 2 # Number of shots per burst (can be upgraded)
+var shoot = false
 var clickPos = Vector2.ZERO 
 var clickAngle = 0
 
+var shotCD = .5  # Shot Cooldown time (can be upgraded)
+var shotTimer = 0.0  # Timer to track the cooldown
+
+
 # Set the click angle to the angle of the most recent click
-#func _input(event):
-	#if event is InputEventMouseButton:
-		#clickPos = event.position  
-		#var direction = (clickPos - position).normalized()
-		#clickAngle = direction.angle()
-		#shoot = true
+func _input(event):
+	if event is InputEventMouseButton && shoot == false:
+		clickPos = event.position  
+		var direction = (clickPos - position).normalized()
+		clickAngle = direction.angle()
+		await get_tree().create_timer(shotTimer).timeout
+		shoot = true
 
 func _physics_process(delta: float) -> void:
 	
-	clickPos = get_global_mouse_position()
-	var direction = (clickPos - position).normalized()
-	clickAngle = direction.angle()
 	
 	# Picks between turning CW and CCW depending on shortest distance
 	var angleDiff = clickAngle - rotation
@@ -28,9 +32,18 @@ func _physics_process(delta: float) -> void:
 	# Rotate towards the click
 	rotation += sign(angleDiff) * min(abs(angleDiff), turnSpeed * delta)
 	
-	if Input.is_mouse_button_pressed(1) and angleDiff == 0:
-		await get_tree().create_timer(.1).timeout
-		fire_bullet()
+	# Handles the shooting logic
+	if shoot == true and abs(angleDiff) < 0.01:
+		shoot = false
+		shotTimer = shotCD
+		for i in shots:
+			await get_tree().create_timer(.1).timeout
+			fire_bullet()
+	
+	# Logic for timer between shots
+	if shotTimer > 0:
+		shotTimer -= delta
+		print(shotCD)
 	
 	#Input handling
 	if Input.is_action_pressed("turn_left"):
