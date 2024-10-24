@@ -1,32 +1,36 @@
 extends CharacterBody2D
 
-
 @export var bullet_scene: PackedScene
-const turnSpeed = .08
+const turnSpeed = 5
 var barrel = 1
 
 var clickPos = Vector2.ZERO 
+var clickAngle = 0
 
+# Set the click angle to the angle of the most recent click
+#func _input(event):
+	#if event is InputEventMouseButton:
+		#clickPos = event.position  
+		#var direction = (clickPos - position).normalized()
+		#clickAngle = direction.angle()
+		#shoot = true
 
-func _input(event):
-	if event is InputEventMouseButton:
-		clickPos = event.position  # Set the target position to the most recent click
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	
-	
-	var angleDiff = clickPos - rotation
+	clickPos = get_global_mouse_position()
+	var direction = (clickPos - position).normalized()
+	clickAngle = direction.angle()
 	
 	# Picks between turning CW and CCW depending on shortest distance
+	var angleDiff = clickAngle - rotation
 	angleDiff = wrapf(angleDiff, -PI, PI)
 	
-	# Rotate towards the target angle
+	# Rotate towards the click
 	rotation += sign(angleDiff) * min(abs(angleDiff), turnSpeed * delta)
 	
-	
-	
+	if Input.is_mouse_button_pressed(1) and angleDiff == 0:
+		await get_tree().create_timer(.1).timeout
+		fire_bullet()
 	
 	#Input handling
 	if Input.is_action_pressed("turn_left"):
