@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://731bcsjlgd7x"]
+
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="1_vhb2g"]
+
+[node name="Spawner" type="Node2D"]
+position = Vector2(-14, -20)
+script = ExtResource("1_vhb2g")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Spawner1" type="Node2D" parent="."]
+position = Vector2(555, -48)
+
+[node name="Timer" type="Timer" parent="Spawner1"]
+
+[node name="Spawner2" type="Node2D" parent="."]
+position = Vector2(1109, -39)
+
+[node name="Timer" type="Timer" parent="Spawner2"]
+
+[node name="Spawner3" type="Node2D" parent="."]
+position = Vector2(1131, 900)
+
+[node name="Timer" type="Timer" parent="Spawner3"]
+
+[node name="Spawner4" type="Node2D" parent="."]
+position = Vector2(536, 1974)
+
+[node name="Spawner5" type="Node2D" parent="."]
+position = Vector2(-41, 915)
+
+[node name="Spawner6" type="Node2D" parent="."]
+position = Vector2(-35, 1937)
+
+[node name="Spawner7" type="Node2D" parent="."]
+position = Vector2(1103, 1952)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Spawner1/Timer" to="." method="_on_timer_timeout"]

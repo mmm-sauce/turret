@@ -1,16 +1,21 @@
 extends CharacterBody2D
 
-@export var bullet_scene: PackedScene
-const turnSpeed = 5
-var barrel = 1
+# Cannon Properties
+@export var bullet_scene: PackedScene  # Reference to the bullet scene
+var turnSpeed = 5  # Cannon rotation speed (*UPGRADEABLE!!!!)
+var barrel = 1  # Alternates between barrels for firing
 
-var shots = 2  # Number of shots per burst (can be upgraded)
-var shoot = false
-var clickPos = Vector2.ZERO
-var clickAngle = 0
+# Shooting Mechanics
+var shots = 2  # Number of shots per burst (*UPGRADEABLE!!!!)
+var shoot = false  # Indicates if the cannon should shoot
+var clickPos = Vector2.ZERO  # Position of the last click
+var clickAngle = 0  # Angle to rotate towards
+var angleDiff = 0 # Difference between angles
 
-var shotCD = 0.5  # Shot cooldown time (can be upgraded)
-var shotTimer = 0.0  # Timer to track the cooldown
+# Timing
+var shotTimer = 0.0  # Tracks cooldown between bursts
+var shotCD = 0.5  # Cooldown time between bursts in seconds (*UPGRADEABLE!!!!)
+
 
 # Set the click angle to the angle of the most recent click
 func _input(event):
@@ -18,21 +23,20 @@ func _input(event):
 		clickPos = event.position
 		var direction = (clickPos - position).normalized()
 		clickAngle = direction.angle()
-
 		await get_tree().create_timer(shotTimer).timeout
 		shoot = true
+
 
 func _physics_process(delta: float) -> void:
 	update_shot_timer(delta)
 
 	# Rotate towards the click
-	var angleDiff = rotate_towards_click(delta)
+	angleDiff = rotate_towards_click(delta)
 
 	# Handles the shooting logic
 	if shoot == true and abs(angleDiff) < 0.01:
 		shoot = false
 		shotTimer = shotCD
-
 		for i in range(shots):
 			await get_tree().create_timer(0.1).timeout
 			fire_bullet()
@@ -50,7 +54,6 @@ func rotate_towards_click(delta):
 func update_shot_timer(delta):
 	if shotTimer > 0:
 		shotTimer -= delta
-		print(shotCD)
 
 func handle_animation():
 	if $AnimatedSprite2D.is_playing() == false:

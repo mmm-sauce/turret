@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://byxxq4b3xjcq0"]
+
+[ext_resource type="Script" path="res://scripts/enemies.gd" id="1_iy6ca"]
+[ext_resource type="Texture2D" uid="uid://jwycrr0kkfie" path="res://icon.svg" id="1_kvqlc"]
+
+[node name="Enemies" type="Area2D"]
+script = ExtResource("1_iy6ca")
+
+[node name="Plane" type="Sprite2D" parent="."]
+texture = ExtResource("1_kvqlc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
