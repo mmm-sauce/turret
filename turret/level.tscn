@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://wulojjnmvnfh"]
+[gd_scene load_steps=3 format=3 uid="uid://qtowdoc0oqbi"]
 
 [ext_resource type="Script" path="res://scoreboard.gd" id="1_3ethi"]
 [ext_resource type="Script" path="res://spawner.gd" id="2_0nady"]

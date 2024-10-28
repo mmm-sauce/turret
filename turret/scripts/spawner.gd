@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-$Spawner6func _on_timer_timeout() -> void:
+func _on_timer_timeout() -> void:
 	var newenemies = Enemies.instaniate()
 	add_child(newenemies)
 	newenemies.position.x = randi_range(0,get_viewport().size.x)
