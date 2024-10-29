@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dm714akg7kum1"]
+[gd_scene load_steps=13 format=4 uid="uid://dm714akg7kum1"]
 
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_vsobv"]
@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://c6qf2ycxqek1t" path="res://assets/Double/rotate_cw.png" id="3_oou2k"]
 [ext_resource type="Texture2D" uid="uid://nwega2hpqe7f" path="res://assets/Double/busy_hourglass_outline_detail.png" id="4_h0gce"]
 [ext_resource type="Texture2D" uid="uid://buttx5chaswa6" path="res://assets/Double/resize_c_diagonal_mirror.png" id="5_6o4vg"]
-[ext_resource type="LabelSettings" uid="uid://cadtaiwa2eo80" path="res://assets/Fonts/label setting.tres" id="5_xofqo"]
-[ext_resource type="PackedScene" uid="uid://731bcsjlgd7x" path="res://scenes/spawner.tscn" id="8_kqgna"]
-[ext_resource type="PackedScene" uid="uid://c07bh54ch4tky" path="res://scenes/enemies.tscn" id="9_qjuoj"]
+[ext_resource type="LabelSettings" path="res://scenes/label setting.tres" id="5_xofqo"]
+[ext_resource type="PackedScene" uid="uid://b5nrujghjgs2x" path="res://level.tscn" id="8_eegj8"]
+[ext_resource type="PackedScene" path="res://scenes/spawner.tscn" id="8_kqgna"]
+[ext_resource type="PackedScene" uid="uid://cxqcqe5y1abux" path="res://enemies.tscn" id="8_xk1dw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_me14v"]
 texture = ExtResource("2_vsobv")
@@ -1327,9 +1328,25 @@ horizontal_alignment = 1
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="Spawner" parent="." instance=ExtResource("8_kqgna")]
+[node name="Level" parent="." instance=ExtResource("8_eegj8")]
+position = Vector2(-31, 539)
 
-[node name="Spawner2" parent="." instance=ExtResource("8_kqgna")]
+[node name="Spawner5" parent="Level" instance=ExtResource("8_kqgna")]
+position = Vector2(418, -554)
+
+[node name="Spawner4" parent="Level" instance=ExtResource("8_kqgna")]
+position = Vector2(902, -562)
+
+[node name="Spawner3" parent="Level" instance=ExtResource("8_kqgna")]
+position = Vector2(604, -546)
+
+[node name="Spawner2" parent="Level" instance=ExtResource("8_kqgna")]
+position = Vector2(233, -553)
+
+[node name="Enemies" parent="Level" instance=ExtResource("8_xk1dw")]
+position = Vector2(361, -448)
+
+[node name="Spawner6" parent="Level" instance=ExtResource("8_kqgna")]
 
 [node name="Enemies" parent="." instance=ExtResource("9_qjuoj")]
 
