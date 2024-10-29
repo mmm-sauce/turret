@@ -1,6 +1,6 @@
 extends Node2D
 
-var Enemies = preload("res://scenes/enemies.tscn")
+var Enemies = preload("res://scripts/enemies.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
