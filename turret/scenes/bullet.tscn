@@ -7,7 +7,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_nptr3"]
 radius = 17.995
 
-[node name="Node2D" type="Node2D"]
+[node name="Bullet" type="Node2D"]
 z_index = 2
 script = ExtResource("1_id1oa")
 

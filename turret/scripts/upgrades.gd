@@ -12,15 +12,22 @@ func _process(delta: float) -> void:
 	get_node("bsCost").text = str(bsCost)
 
 func _on_turn_speed_pressed() -> void:
-	cannon.turnSpeed += 1
-	tsCost += 5
+	if get_parent().coins >= tsCost:
+		cannon.turnSpeed += 1
+		get_parent().coins -= tsCost
+		tsCost += 5
+	
 
 
 func _on_shot_cd_pressed() -> void:
-	cannon.shotCD = cannon.shotCD*.5
-	cdCost += 5
+	if get_parent().coins >= cdCost:
+		cannon.shotCD = cannon.shotCD*.8
+		get_parent().coins -= cdCost
+		cdCost += 5
 
 
 func _on_burst_shots_pressed() -> void:
-	cannon.shots += 1
-	bsCost += 5
+	if get_parent().coins >= bsCost:
+		cannon.shots += 1
+		get_parent().coins -= bsCost
+		bsCost += 5
