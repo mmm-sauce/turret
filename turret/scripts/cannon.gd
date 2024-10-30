@@ -64,6 +64,7 @@ func _physics_process(delta: float) -> void:
 		for i in range(shots):
 			await get_tree().create_timer(0.1).timeout
 			fire_bullet()
+			$AudioStreamPlayer2D.play()
 
 	handle_animation()
 	

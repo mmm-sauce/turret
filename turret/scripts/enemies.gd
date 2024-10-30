@@ -18,8 +18,9 @@ var turnSpeed = 1.5  # Speed of rotation
 var speed = 300  # Speed of movement
 var has_reached_cannon = false  # Indicates if the plane has reached the cannon
 
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$HealthBar.value = 100
+	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
 		
@@ -71,10 +72,9 @@ func adjust_angle(delta):
 	elif not has_reached_cannon:
 		angleDiff = rotate_towards_cannon(delta)
 
-func rotate_towards_cannon(delta):
-	# Calculate angle difference and normalize it
-	var angleDiff = cannonAngle - rotation
-	angleDiff = wrapf(angleDiff, -PI, PI)
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	position.y = position.y +10
 	
 	# Rotate towards the target angle
 	rotation += sign(angleDiff) * min(abs(angleDiff), turnSpeed * delta)
