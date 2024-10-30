@@ -4,9 +4,13 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene  # Reference to the bullet scene
 var turnSpeed = 5  # Cannon rotation speed (*UPGRADEABLE!!!!)
 var barrel = 1  # Alternates between barrels for firing
+var health = 100 # Health
+var isHeal = false # Is currently healing?
+
+
 
 # Shooting Mechanics
-var shots = 2  # Number of shots per burst (*UPGRADEABLE!!!!)
+var shots = 1  # Number of shots per burst (*UPGRADEABLE!!!!)
 var shoot = false  # Indicates if the cannon should shoot
 var clickPos = Vector2.ZERO  # Position of the last click
 var clickAngle = 0  # Angle to rotate towards
@@ -26,8 +30,28 @@ func _input(event):
 		await get_tree().create_timer(shotTimer).timeout
 		shoot = true
 
+func _ready() -> void:
+	$HealthBar.value = 100
 
 func _physics_process(delta: float) -> void:
+	
+	if not isHeal:
+		isHeal = true
+		health = min(health + 5, 100)
+		await get_tree().create_timer(.5).timeout
+		isHeal = false
+	
+	if $HealthBar.value == 100:
+		$HealthBar.visible = false
+	else:
+		$HealthBar.visible = true
+	
+	# Death hanlding
+	if $HealthBar.value < 0.001:
+		game_over()
+	
+	$HealthBar.value = health
+	
 	update_shot_timer(delta)
 
 	# Rotate towards the click
@@ -43,6 +67,12 @@ func _physics_process(delta: float) -> void:
 			$AudioStreamPlayer2D.play()
 
 	handle_animation()
+	
+	$HealthBar.global_position = global_position - Vector2(73, 125)
+	$HealthBar.rotation = -rotation
+
+func game_over():
+	pass
 
 func rotate_towards_click(delta):
 	var angleDiff = clickAngle - rotation
@@ -68,7 +98,9 @@ func fire_bullet():
 
 	# Instancing the bullet
 	var bullet = bullet_scene.instantiate()
-
+	
+	bullet.trueParent = "cannon"
+	
 	# Shooting bullet out of alternating barrels
 	if barrel == 1:
 		bullet.position = get_node("Marker2D").global_position
