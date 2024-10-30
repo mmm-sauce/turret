@@ -10,6 +10,7 @@ func _process(delta: float) -> void:
 	get_node("tsCost").text = str(tsCost)
 	get_node("cdCost").text = str(cdCost)
 	get_node("bsCost").text = str(bsCost)
+	$Coins.text = str(get_parent().coins)
 
 func _on_turn_speed_pressed() -> void:
 	if get_parent().coins >= tsCost:

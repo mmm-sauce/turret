@@ -1,13 +1,9 @@
-[gd_scene load_steps=15 format=4 uid="uid://gcjbf48b3da0"]
+[gd_scene load_steps=11 format=4 uid="uid://gcjbf48b3da0"]
 
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_0k4ww"]
+[ext_resource type="Script" path="res://main.gd" id="1_0k4ww"]
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_vsobv"]
-[ext_resource type="Script" path="res://scripts/upgrades.gd" id="3_c8f2t"]
-[ext_resource type="Texture2D" uid="uid://c6qf2ycxqek1t" path="res://assets/Double/rotate_cw.png" id="3_oou2k"]
-[ext_resource type="Texture2D" uid="uid://nwega2hpqe7f" path="res://assets/Double/busy_hourglass_outline_detail.png" id="4_h0gce"]
-[ext_resource type="Texture2D" uid="uid://buttx5chaswa6" path="res://assets/Double/resize_c_diagonal_mirror.png" id="5_6o4vg"]
-[ext_resource type="LabelSettings" uid="uid://cadtaiwa2eo80" path="res://assets/Fonts/label setting.tres" id="5_xofqo"]
+[ext_resource type="PackedScene" uid="uid://cu6i4ku1ruqin" path="res://ui.tscn" id="4_qjdo3"]
 [ext_resource type="PackedScene" uid="uid://d0mqlysvrcnf2" path="res://scenes/level.tscn" id="8_eegj8"]
 [ext_resource type="PackedScene" uid="uid://cieq11ff07ox7" path="res://scenes/spawner.tscn" id="8_kqgna"]
 [ext_resource type="PackedScene" uid="uid://c07bh54ch4tky" path="res://scenes/enemies.tscn" id="9_qjuoj"]
@@ -1274,81 +1270,8 @@ tile_set = SubResource("TileSet_f6dyj")
 tile_map_data = PackedByteArray("AAAFAAEAAAARAAUAAAADAAEAAAAVAAUAAAABAAEAAAATAAUAAAAHAAIAAAAUAAUAAAACAAMAAAAPAAUAAAAEAA0AAAATAAUAAAABAA0AAAARAAUAAAAIAAgAAAATAAUAAAADAAsAAAAUAAUAAAAFAAYAAAATAAAAAAABAAgAAAAUAAAAAAAHAAUAAAAUAAAAAAAHAAsAAAAVAAAAAAA=")
 tile_set = SubResource("TileSet_f6dyj")
 
-[node name="UI" type="VBoxContainer" parent="." node_paths=PackedStringArray("cannon")]
-z_index = 5
-offset_left = 32.0
-offset_top = 128.0
-offset_right = 96.0
-offset_bottom = 502.0
-scale = Vector2(1.5, 1.5)
-theme_override_constants/separation = -10
-script = ExtResource("3_c8f2t")
-cannon = NodePath("../cannon")
-
-[node name="Sprite2D" type="Sprite2D" parent="UI"]
-position = Vector2(32, -32)
-scale = Vector2(2, 2)
-texture = ExtResource("2_vsobv")
-region_enabled = true
-region_rect = Rect2(2432, 1408, 128, 128)
-
-[node name="Cash" type="Label" parent="UI"]
-layout_mode = 2
-text = "12"
-label_settings = ExtResource("5_xofqo")
-horizontal_alignment = 1
-
-[node name="Cash2" type="Label" parent="UI"]
-layout_mode = 2
-text = "
-
-"
-label_settings = ExtResource("5_xofqo")
-
-[node name="TurnSpeed" type="TextureButton" parent="UI"]
-layout_mode = 2
-texture_normal = ExtResource("3_oou2k")
-stretch_mode = 3
-flip_v = true
-
-[node name="tsCost" type="Label" parent="UI"]
-layout_mode = 2
-text = "10"
-label_settings = ExtResource("5_xofqo")
-horizontal_alignment = 1
-
-[node name="tsCost2" type="Label" parent="UI"]
-layout_mode = 2
-label_settings = ExtResource("5_xofqo")
-horizontal_alignment = 1
-
-[node name="ShotCD" type="TextureButton" parent="UI"]
-layout_mode = 2
-texture_normal = ExtResource("4_h0gce")
-
-[node name="cdCost" type="Label" parent="UI"]
-layout_mode = 2
-text = "10"
-label_settings = ExtResource("5_xofqo")
-horizontal_alignment = 1
-
-[node name="cdCost2" type="Label" parent="UI"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="BurstShots" type="TextureButton" parent="UI"]
-layout_mode = 2
-texture_normal = ExtResource("5_6o4vg")
-
-[node name="bsCost" type="Label" parent="UI"]
-layout_mode = 2
-text = "10"
-label_settings = ExtResource("5_xofqo")
-horizontal_alignment = 1
-
-[node name="bsCost2" type="Label" parent="UI"]
-layout_mode = 2
-horizontal_alignment = 1
+[node name="UI" parent="." instance=ExtResource("4_qjdo3")]
+offset_bottom = 577.0
 
 [node name="Level" parent="." instance=ExtResource("8_eegj8")]
 
@@ -1370,7 +1293,3 @@ position = Vector2(-16, 683)
 [node name="tempSpawner" type="Node2D" parent="."]
 script = ExtResource("11_xcbr0")
 enemyScene = ExtResource("9_qjuoj")
-
-[connection signal="pressed" from="UI/TurnSpeed" to="UI" method="_on_turn_speed_pressed"]
-[connection signal="pressed" from="UI/ShotCD" to="UI" method="_on_shot_cd_pressed"]
-[connection signal="pressed" from="UI/BurstShots" to="UI" method="_on_burst_shots_pressed"]
