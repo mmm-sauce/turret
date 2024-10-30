@@ -1270,8 +1270,9 @@ tile_set = SubResource("TileSet_f6dyj")
 tile_map_data = PackedByteArray("AAAFAAEAAAARAAUAAAADAAEAAAAVAAUAAAABAAEAAAATAAUAAAAHAAIAAAAUAAUAAAACAAMAAAAPAAUAAAAEAA0AAAATAAUAAAABAA0AAAARAAUAAAAIAAgAAAATAAUAAAADAAsAAAAUAAUAAAAFAAYAAAATAAAAAAABAAgAAAAUAAAAAAAHAAUAAAAUAAAAAAAHAAsAAAAVAAAAAAA=")
 tile_set = SubResource("TileSet_f6dyj")
 
-[node name="UI" parent="." instance=ExtResource("4_qjdo3")]
+[node name="UI" parent="." node_paths=PackedStringArray("cannon") instance=ExtResource("4_qjdo3")]
 offset_bottom = 577.0
+cannon = NodePath("../cannon")
 
 [node name="Level" parent="." instance=ExtResource("8_eegj8")]
 
