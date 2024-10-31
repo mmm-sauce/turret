@@ -6,19 +6,27 @@ var tsCost = 10
 var cdCost = 10
 var bsCost = 10
 
-var popdown = false
 var speed = .2
+var seperation = -100
+
+var popup = false
+var popping = false
 
 
 func _process(delta: float) -> void:
+	if popup == true:
+		get_parent().get_tree().paused = true
+	elif popup == false:
+		get_parent().get_tree().paused = false
+	print(popup)
+	
+	$Upgrades.add_theme_constant_override("separation", seperation)
+	
 	$Upgrades/tsCost.text = str(tsCost)
 	$Upgrades/cdCost.text = str(cdCost)
 	$Upgrades/bsCost.text = str(bsCost)
 	$Coins.text = str(get_parent().coins)
 	
-	if popdown:
-		ease(speed, -3)
-		print(speed)
 
 func _on_turn_speed_pressed() -> void:
 	if get_parent().coins >= tsCost:
@@ -41,4 +49,18 @@ func _on_burst_shots_pressed() -> void:
 		bsCost += 5
 
 func _on_popup_pressed() -> void:
-	popdown = true
+	if not popping:
+		popping = true
+		# Changes step and max based on whether the menu is already out or not
+		
+		if popup == true: # seperation = 0
+			for i in range(0, 101, 1):
+				await get_tree().create_timer(.005).timeout
+				seperation = EasingFunctions.ease_in_out_cubic(0, -100, float(i)/100)
+			popup = false
+		else:
+			popup = true
+			for i in range(0, 101, 1):
+				await get_tree().create_timer(.005).timeout
+				seperation = EasingFunctions.ease_out_bounce(-100, 0, float(i)/100)
+		popping = false
