@@ -72,9 +72,10 @@ func adjust_angle(delta):
 	elif not has_reached_cannon:
 		angleDiff = rotate_towards_cannon(delta)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	position.y = position.y +10
+func rotate_towards_cannon(delta):
+	# Calculate angle difference and normalize it
+	var angleDiff = cannonAngle - rotation
+	angleDiff = wrapf(angleDiff, -PI, PI)
 	
 	# Rotate towards the target angle
 	rotation += sign(angleDiff) * min(abs(angleDiff), turnSpeed * delta)
