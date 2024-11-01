@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c07bh54ch4tky"]
+[gd_scene load_steps=14 format=3 uid="uid://c07bh54ch4tky"]
 
 [ext_resource type="Script" path="res://scripts/enemies.gd" id="1_iy6ca"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_hdjkr"]
 [ext_resource type="PackedScene" uid="uid://dxmf0pbjr4we2" path="res://scenes/bullet.tscn" id="2_uhi3o"]
+[ext_resource type="AudioStream" uid="uid://b2soequfwjf68" path="res://audio/sfx/Explosion.wav" id="4_fo77d"]
 [ext_resource type="Texture2D" uid="uid://jkevj5owxlr3" path="res://assets/allSprites_retina.png" id="4_kahv5"]
+[ext_resource type="AudioStream" uid="uid://6c534h6xnik0" path="res://audio/sfx/mixkit-game-gun-shot-1662.mp3" id="5_p7x2m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0611"]
 radius = 41.0
@@ -63,6 +65,12 @@ z_index = 4
 texture = ExtResource("2_hdjkr")
 region_enabled = true
 region_rect = Rect2(2304, 1408, 128, 128)
+
+[node name="planeshoot" type="AudioStreamPlayer2D" parent="Plane"]
+stream = ExtResource("5_p7x2m")
+
+[node name="planeexplode" type="AudioStreamPlayer2D" parent="Plane"]
+stream = ExtResource("4_fo77d")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = 2
