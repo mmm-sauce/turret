@@ -95,6 +95,7 @@ func fire_bullet():
 	# Handling barrel animation
 	$AnimatedSprite2D.play('default')
 	await get_tree().create_timer(0.1).timeout
+	$AudioStreamPlayer2D.play()
 
 	# Instancing the bullet
 	var bullet = bullet_scene.instantiate()

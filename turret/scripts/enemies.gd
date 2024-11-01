@@ -49,6 +49,7 @@ func _physics_process(delta: float) -> void:
 			is_firing = false
 
 func plane_explode():
+	$Plane/planeexplode.play()
 	$Shadow.visible = false
 	$Plane.visible = false
 	get_parent().coins += 2
@@ -88,14 +89,15 @@ func rotate_towards_cannon(delta):
 func fire_bullet():
 	# Instance the bullet
 	var bullet = bullet_scene.instantiate()
+	$Plane/planeshoot.play()
 	
 	# Set bullet position and rotation
 	bullet.global_position = $Marker2D.global_position
 	bullet.rotation = rotation
 	
 	bullet.trueParent = "enemy"
-	
 	# Add bullet to the scene
+	
 	get_parent().add_child(bullet)
 
 
