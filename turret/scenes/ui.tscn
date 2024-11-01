@@ -1,14 +1,15 @@
 [gd_scene load_steps=8 format=3 uid="uid://bfs164ocgn6ow"]
 
-[ext_resource type="Script" path="res://scripts/upgrades.gd" id="1_qgk6y"]
-[ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_pk4tu"]
-[ext_resource type="LabelSettings" uid="uid://cadtaiwa2eo80" path="res://assets/Fonts/label setting.tres" id="3_dpvop"]
-[ext_resource type="Texture2D" uid="uid://cb8nje8qjhipc" path="res://assets/Double/arrow_s.png" id="4_upjna"]
-[ext_resource type="Texture2D" uid="uid://c6qf2ycxqek1t" path="res://assets/Double/rotate_cw.png" id="5_8k7fi"]
-[ext_resource type="Texture2D" uid="uid://nwega2hpqe7f" path="res://assets/Double/busy_hourglass_outline_detail.png" id="6_xl632"]
-[ext_resource type="Texture2D" uid="uid://buttx5chaswa6" path="res://assets/Double/resize_c_diagonal_mirror.png" id="7_lb7kn"]
+[ext_resource type="Script" path="res://scripts/upgrades.gd" id="1_gagf1"]
+[ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_e187h"]
+[ext_resource type="LabelSettings" uid="uid://cadtaiwa2eo80" path="res://assets/Fonts/label setting.tres" id="3_pnyjo"]
+[ext_resource type="Texture2D" uid="uid://c6qf2ycxqek1t" path="res://assets/Double/rotate_cw.png" id="4_rqlod"]
+[ext_resource type="Texture2D" uid="uid://dnwff4owfv160" path="res://assets/Double/arrow_n.png" id="4_yukm8"]
+[ext_resource type="Texture2D" uid="uid://nwega2hpqe7f" path="res://assets/Double/busy_hourglass_outline_detail.png" id="5_65vr0"]
+[ext_resource type="Texture2D" uid="uid://buttx5chaswa6" path="res://assets/Double/resize_c_diagonal_mirror.png" id="6_eadr4"]
 
 [node name="UI" type="Node2D"]
+process_mode = 3
 z_index = 5
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_qgk6y")
@@ -21,6 +22,7 @@ region_enabled = true
 region_rect = Rect2(2432, 1408, 128, 128)
 
 [node name="Coins" type="Label" parent="."]
+process_mode = 3
 offset_left = 32.0
 offset_top = 96.0
 offset_right = 104.0
@@ -40,18 +42,27 @@ text = "
 label_settings = ExtResource("3_dpvop")
 
 [node name="Popup" type="TextureButton" parent="."]
-offset_left = 32.0
-offset_top = 160.0
-offset_right = 104.0
-offset_bottom = 232.0
-texture_normal = ExtResource("4_upjna")
+process_mode = 3
+z_index = 6
+offset_left = 16.0
+offset_top = 150.0
+offset_right = 80.0
+offset_bottom = 214.0
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("4_yukm8")
 
 [node name="Upgrades" type="VBoxContainer" parent="."]
 clip_contents = true
 offset_left = 32.0
-offset_top = 224.0
-offset_right = 104.0
-offset_bottom = 670.0
+offset_top = 228.667
+offset_right = 96.0
+offset_bottom = 780.667
+theme_override_constants/separation = -5
+
+[node name="tsCost3" type="Label" parent="Upgrades"]
+layout_mode = 2
+label_settings = ExtResource("3_pnyjo")
+horizontal_alignment = 1
 
 [node name="TurnSpeed" type="TextureButton" parent="Upgrades"]
 layout_mode = 2

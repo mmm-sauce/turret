@@ -21,8 +21,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	elapsedTime += delta
 	
-	print(spawnTimer)
-	
 	if not spawning:
 		spawning = true
 		await get_tree().create_timer(spawnTimer).timeout
