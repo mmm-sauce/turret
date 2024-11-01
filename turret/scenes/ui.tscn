@@ -1,22 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://cu6i4ku1ruqin"]
+[gd_scene load_steps=8 format=3 uid="uid://bfs164ocgn6ow"]
 
-[ext_resource type="Script" path="res://scripts/upgrades.gd" id="1_gagf1"]
-[ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_e187h"]
-[ext_resource type="LabelSettings" uid="uid://cadtaiwa2eo80" path="res://assets/Fonts/label setting.tres" id="3_pnyjo"]
-[ext_resource type="Texture2D" uid="uid://c6qf2ycxqek1t" path="res://assets/Double/rotate_cw.png" id="4_rqlod"]
-[ext_resource type="Texture2D" uid="uid://cb8nje8qjhipc" path="res://assets/Double/arrow_s.png" id="4_x7fq3"]
-[ext_resource type="Texture2D" uid="uid://nwega2hpqe7f" path="res://assets/Double/busy_hourglass_outline_detail.png" id="5_65vr0"]
-[ext_resource type="Texture2D" uid="uid://buttx5chaswa6" path="res://assets/Double/resize_c_diagonal_mirror.png" id="6_eadr4"]
+[ext_resource type="Script" path="res://scripts/upgrades.gd" id="1_qgk6y"]
+[ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_pk4tu"]
+[ext_resource type="LabelSettings" uid="uid://cadtaiwa2eo80" path="res://assets/Fonts/label setting.tres" id="3_dpvop"]
+[ext_resource type="Texture2D" uid="uid://cb8nje8qjhipc" path="res://assets/Double/arrow_s.png" id="4_upjna"]
+[ext_resource type="Texture2D" uid="uid://c6qf2ycxqek1t" path="res://assets/Double/rotate_cw.png" id="5_8k7fi"]
+[ext_resource type="Texture2D" uid="uid://nwega2hpqe7f" path="res://assets/Double/busy_hourglass_outline_detail.png" id="6_xl632"]
+[ext_resource type="Texture2D" uid="uid://buttx5chaswa6" path="res://assets/Double/resize_c_diagonal_mirror.png" id="7_lb7kn"]
 
 [node name="UI" type="Node2D"]
 z_index = 5
 scale = Vector2(1.5, 1.5)
-script = ExtResource("1_gagf1")
+script = ExtResource("1_qgk6y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(64, 64)
 scale = Vector2(2, 2)
-texture = ExtResource("2_e187h")
+texture = ExtResource("2_pk4tu")
 region_enabled = true
 region_rect = Rect2(2432, 1408, 128, 128)
 
@@ -26,7 +26,7 @@ offset_top = 96.0
 offset_right = 104.0
 offset_bottom = 140.0
 text = "12"
-label_settings = ExtResource("3_pnyjo")
+label_settings = ExtResource("3_dpvop")
 horizontal_alignment = 1
 
 [node name="Coins2" type="Label" parent="."]
@@ -37,14 +37,14 @@ text = "
 
 
 "
-label_settings = ExtResource("3_pnyjo")
+label_settings = ExtResource("3_dpvop")
 
 [node name="Popup" type="TextureButton" parent="."]
 offset_left = 32.0
 offset_top = 160.0
 offset_right = 104.0
 offset_bottom = 232.0
-texture_normal = ExtResource("4_x7fq3")
+texture_normal = ExtResource("4_upjna")
 
 [node name="Upgrades" type="VBoxContainer" parent="."]
 clip_contents = true
@@ -55,29 +55,29 @@ offset_bottom = 670.0
 
 [node name="TurnSpeed" type="TextureButton" parent="Upgrades"]
 layout_mode = 2
-texture_normal = ExtResource("4_rqlod")
+texture_normal = ExtResource("5_8k7fi")
 stretch_mode = 3
 flip_v = true
 
 [node name="tsCost" type="Label" parent="Upgrades"]
 layout_mode = 2
 text = "10"
-label_settings = ExtResource("3_pnyjo")
+label_settings = ExtResource("3_dpvop")
 horizontal_alignment = 1
 
 [node name="tsCost2" type="Label" parent="Upgrades"]
 layout_mode = 2
-label_settings = ExtResource("3_pnyjo")
+label_settings = ExtResource("3_dpvop")
 horizontal_alignment = 1
 
 [node name="ShotCD" type="TextureButton" parent="Upgrades"]
 layout_mode = 2
-texture_normal = ExtResource("5_65vr0")
+texture_normal = ExtResource("6_xl632")
 
 [node name="cdCost" type="Label" parent="Upgrades"]
 layout_mode = 2
 text = "10"
-label_settings = ExtResource("3_pnyjo")
+label_settings = ExtResource("3_dpvop")
 horizontal_alignment = 1
 
 [node name="cdCost2" type="Label" parent="Upgrades"]
@@ -86,12 +86,12 @@ horizontal_alignment = 1
 
 [node name="BurstShots" type="TextureButton" parent="Upgrades"]
 layout_mode = 2
-texture_normal = ExtResource("6_eadr4")
+texture_normal = ExtResource("7_lb7kn")
 
 [node name="bsCost" type="Label" parent="Upgrades"]
 layout_mode = 2
 text = "10"
-label_settings = ExtResource("3_pnyjo")
+label_settings = ExtResource("3_dpvop")
 horizontal_alignment = 1
 
 [node name="bsCost2" type="Label" parent="Upgrades"]

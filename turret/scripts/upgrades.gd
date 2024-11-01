@@ -1,6 +1,10 @@
-extends Node2D
+extends VBoxContainer
 
 @export var cannon = CharacterBody2D
+
+@onready var ts_cost: Label = $tsCost
+@onready var cd_cost: Label = $cdCost
+@onready var bs_cost: Label = $bsCost
 
 var tsCost = 10
 var cdCost = 10
@@ -11,10 +15,12 @@ var speed = .2
 
 
 func _process(delta: float) -> void:
-	$Upgrades/tsCost.text = str(tsCost)
-	$Upgrades/cdCost.text = str(cdCost)
-	$Upgrades/bsCost.text = str(bsCost)
-	$Coins.text = str(get_parent().coins)
+	ts_cost.text = str(tsCost)
+	cd_cost.text = str(cdCost)
+	bs_cost.text = str(bsCost)
+	#$Upgrades/cdCost.text = str(cdCost)
+	#$Upgrades/bsCost.text = str(bsCost)
+	#$Coins.text = str(get_parent().coins)
 	
 	if popdown:
 		ease(speed, -3)
