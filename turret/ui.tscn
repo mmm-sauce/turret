@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cu6i4ku1ruqin"]
+[gd_scene load_steps=13 format=3 uid="uid://cu6i4ku1ruqin"]
 
 [ext_resource type="Script" path="res://scripts/upgrades.gd" id="1_gagf1"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_e187h"]
@@ -6,7 +6,26 @@
 [ext_resource type="Texture2D" uid="uid://c6qf2ycxqek1t" path="res://assets/Double/rotate_cw.png" id="4_rqlod"]
 [ext_resource type="Texture2D" uid="uid://dnwff4owfv160" path="res://assets/Double/arrow_n.png" id="4_yukm8"]
 [ext_resource type="Texture2D" uid="uid://nwega2hpqe7f" path="res://assets/Double/busy_hourglass_outline_detail.png" id="5_65vr0"]
+[ext_resource type="FontFile" uid="uid://b7jvr41u6swsj" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="5_xk3xb"]
 [ext_resource type="Texture2D" uid="uid://buttx5chaswa6" path="res://assets/Double/resize_c_diagonal_mirror.png" id="6_eadr4"]
+
+[sub_resource type="Gradient" id="Gradient_p5gs3"]
+offsets = PackedFloat32Array(0, 0.188312, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0.298039)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mim5k"]
+gradient = SubResource("Gradient_p5gs3")
+fill = 1
+fill_from = Vector2(0.408257, 0.279817)
+fill_to = Vector2(0.733945, 0.816514)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2c21c"]
+font = ExtResource("5_xk3xb")
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_egs88"]
+font = ExtResource("5_xk3xb")
+font_size = 9
 
 [node name="UI" type="Node2D"]
 process_mode = 3
@@ -21,6 +40,13 @@ texture = ExtResource("2_e187h")
 region_enabled = true
 region_rect = Rect2(2432, 1408, 128, 128)
 
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+position = Vector2(360, 640)
+scale = Vector2(11.25, 20)
+texture = SubResource("GradientTexture2D_mim5k")
+
 [node name="Coins" type="Label" parent="."]
 process_mode = 3
 offset_left = 32.0
@@ -28,7 +54,7 @@ offset_top = 96.0
 offset_right = 104.0
 offset_bottom = 140.0
 text = "12"
-label_settings = ExtResource("3_pnyjo")
+label_settings = SubResource("LabelSettings_2c21c")
 horizontal_alignment = 1
 
 [node name="Coins2" type="Label" parent="."]
@@ -43,25 +69,34 @@ label_settings = ExtResource("3_pnyjo")
 
 [node name="Popup" type="TextureButton" parent="."]
 process_mode = 3
-z_index = 6
-offset_left = 16.0
-offset_top = 150.0
-offset_right = 80.0
-offset_bottom = 214.0
+z_index = 1
+offset_left = 32.0
+offset_top = 160.0
+offset_right = 96.0
+offset_bottom = 224.0
 scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(32, 32)
 texture_normal = ExtResource("4_yukm8")
 
-[node name="Upgrades" type="VBoxContainer" parent="."]
+[node name="Upgrades" type="GridContainer" parent="."]
 clip_contents = true
 offset_left = 32.0
-offset_top = 228.667
-offset_right = 96.0
-offset_bottom = 780.667
-theme_override_constants/separation = -5
+offset_top = 229.0
+offset_right = 454.0
+offset_bottom = 702.0
+theme_override_constants/h_separation = 15
+columns = 2
 
-[node name="tsCost3" type="Label" parent="Upgrades"]
+[node name="Spacer" type="Label" parent="Upgrades"]
 layout_mode = 2
-label_settings = ExtResource("3_pnyjo")
+text = "  "
+label_settings = SubResource("LabelSettings_egs88")
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = SubResource("LabelSettings_egs88")
 horizontal_alignment = 1
 
 [node name="TurnSpeed" type="TextureButton" parent="Upgrades"]
@@ -72,42 +107,53 @@ flip_v = true
 
 [node name="tsCost" type="Label" parent="Upgrades"]
 layout_mode = 2
-text = "10"
+text = "turn Speed - 10 coins"
+label_settings = ExtResource("3_pnyjo")
+
+[node name="Spacer4" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
 label_settings = ExtResource("3_pnyjo")
 horizontal_alignment = 1
 
-[node name="tsCost2" type="Label" parent="Upgrades"]
+[node name="Spacer5" type="Label" parent="Upgrades"]
 layout_mode = 2
+text = "  "
 label_settings = ExtResource("3_pnyjo")
 horizontal_alignment = 1
 
 [node name="ShotCD" type="TextureButton" parent="Upgrades"]
 layout_mode = 2
 texture_normal = ExtResource("5_65vr0")
+stretch_mode = 3
 
 [node name="cdCost" type="Label" parent="Upgrades"]
 layout_mode = 2
-text = "10"
+text = "Shot cooldown - 10 coins"
+label_settings = ExtResource("3_pnyjo")
+
+[node name="Spacer6" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
 label_settings = ExtResource("3_pnyjo")
 horizontal_alignment = 1
 
-[node name="cdCost2" type="Label" parent="Upgrades"]
+[node name="Spacer7" type="Label" parent="Upgrades"]
 layout_mode = 2
+text = "  "
+label_settings = ExtResource("3_pnyjo")
 horizontal_alignment = 1
 
 [node name="BurstShots" type="TextureButton" parent="Upgrades"]
 layout_mode = 2
 texture_normal = ExtResource("6_eadr4")
+stretch_mode = 3
 
 [node name="bsCost" type="Label" parent="Upgrades"]
 layout_mode = 2
-text = "10"
+text = "burst shots - 10 coins
+"
 label_settings = ExtResource("3_pnyjo")
-horizontal_alignment = 1
-
-[node name="bsCost2" type="Label" parent="Upgrades"]
-layout_mode = 2
-horizontal_alignment = 1
 
 [connection signal="pressed" from="Popup" to="." method="_on_popup_pressed"]
 [connection signal="pressed" from="Upgrades/TurnSpeed" to="." method="_on_turn_speed_pressed"]
