@@ -1278,9 +1278,6 @@ texture_normal = ExtResource("3_oou2k")
 stretch_mode = 3
 flip_v = true
 
-[node name="Area2D" parent="." instance=ExtResource("8_1pe6c")]
-position = Vector2(823, 369)
-
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("11_xcbr0")
 enemyScene = ExtResource("9_qjuoj")
