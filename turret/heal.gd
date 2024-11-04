@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 	pass
 
 func heal_collect():
+	$AudioStreamPlayer2D.play()
 	$Sprite2D.visible = false
 	$Sprite2D2.visible = false
 	get_parent().get_node("cannon").health += 20
