@@ -10,14 +10,16 @@
 [ext_resource type="Texture2D" uid="uid://buttx5chaswa6" path="res://assets/Double/resize_c_diagonal_mirror.png" id="6_eadr4"]
 
 [sub_resource type="Gradient" id="Gradient_p5gs3"]
-offsets = PackedFloat32Array(0, 0.188312, 0.993506)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0.392157)
+offsets = PackedFloat32Array(0.215, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.494118)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mim5k"]
 gradient = SubResource("Gradient_p5gs3")
+width = 1281
+height = 1281
 fill = 1
-fill_from = Vector2(0.408257, 0.206422)
-fill_to = Vector2(0.733945, 0.816514)
+fill_from = Vector2(0.451219, 0.307927)
+fill_to = Vector2(0.640244, 0.685976)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2c21c"]
 font = ExtResource("5_xk3xb")
@@ -43,8 +45,7 @@ region_rect = Rect2(2432, 1408, 128, 128)
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 z_index = -1
-position = Vector2(360, 640)
-scale = Vector2(11.25, 20)
+position = Vector2(360, 639.667)
 texture = SubResource("GradientTexture2D_mim5k")
 
 [node name="Coins" type="Label" parent="."]

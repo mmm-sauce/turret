@@ -19,12 +19,14 @@ func _ready() -> void:
 	_spawn_enemy()
 	
 func _process(delta: float) -> void:
-	elapsedTime += delta
+	if not get_tree().paused == true:
+		elapsedTime += delta
 	
 	if not spawning:
 		spawning = true
 		await get_tree().create_timer(spawnTimer).timeout
-		_spawn_enemy()
+		if not get_tree().paused == true:
+			_spawn_enemy()
 		spawning = false
 		
 	

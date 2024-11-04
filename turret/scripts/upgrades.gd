@@ -19,7 +19,6 @@ func _process(delta: float) -> void:
 		get_parent().get_tree().paused = true
 	elif popup == false:
 		get_parent().get_tree().paused = false
-	print(popup)
 	
 	$Popup.rotation = Vseperation/-100 * 3.15
 	
@@ -31,11 +30,6 @@ func _process(delta: float) -> void:
 	$Upgrades/bsCost.text = "burst shots - "+str(bsCost)+" coins"
 	$Coins.text = str(get_parent().coins)
 	
-	#if get_parent().coins > min(bsCost,cdCost,tsCost) && popup == true:
-		#for i in range(0, 101, 1):
-			#await get_tree().create_timer(.005).timeout
-			#$Popup.rotation = EasingFunctions.ease_in_out_bounce(3.05, 3.76, float(i)/100)
-			#print($Popup.rotation)
 	
 
 func _on_turn_speed_pressed() -> void:
