@@ -1275,9 +1275,6 @@ cannon = NodePath("../cannon")
 
 [node name="Level" parent="." instance=ExtResource("8_eegj8")]
 
-[node name="Area2D" parent="." instance=ExtResource("8_1pe6c")]
-position = Vector2(823, 369)
-
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("11_xcbr0")
 enemyScene = ExtResource("9_qjuoj")

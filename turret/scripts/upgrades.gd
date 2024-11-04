@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	
 	$Upgrades/tsCost.text = "turn speed - "+str(tsCost)+" coins"
 	$Upgrades/cdCost.text = "burst cooldown - "+str(cdCost)+" coins"
-	$Upgrades/bsCost.text = "burst shots - "+str(bsCost)+" coins"
+	$Upgrades/bsCost.text = "more shots - "+str(bsCost)+" coins"
 	$Coins.text = str(get_parent().coins)
 	
 	

@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 	if not healSpawning && heals < maxHeals:
 		heals += 1
 		healSpawning = true
-		await get_tree().create_timer(randi_range(1,5)).timeout
+		await get_tree().create_timer(randi_range(5,15)).timeout
 		if not get_tree().paused == true:
 			spawn_heal()
 		healSpawning = false
@@ -92,7 +92,7 @@ func spawn_heal():
 	print("Soo close")
 	var heal = healScene.instantiate()
 	get_parent().add_child(heal)
-	heal.position = Vector2(randf_range(0, RECT_WIDTH), randf_range(0, RECT_HEIGHT))
+	heal.position = Vector2(randf_range(20, RECT_WIDTH-20), randf_range(20, RECT_HEIGHT-20))
 	
 
 func _increase_spawn_speed() -> void:

@@ -4,9 +4,9 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene  # Reference to the bullet scene
 var turnSpeed = 5  # Cannon rotation speed (*UPGRADEABLE!!!!)
 var barrel = 1  # Alternates between barrels for firing
-var health = 100 # Health
+var maxHealth = 500 # Health
 var isHeal = false # Is currently healing?
-
+var health = maxHealth
 
 
 # Shooting Mechanics
@@ -31,17 +31,17 @@ func _input(event):
 		shoot = true
 
 func _ready() -> void:
-	$HealthBar.value = 100
+	$HealthBar.value = health
 
 func _physics_process(delta: float) -> void:
-	
+
 	if not isHeal:
 		isHeal = true
-		health = min(health + 5, 100)
+		health = min(health + 5, maxHealth)
 		await get_tree().create_timer(.5).timeout
 		isHeal = false
 	
-	if $HealthBar.value == 100:
+	if $HealthBar.value == maxHealth:
 		$HealthBar.visible = false
 	else:
 		$HealthBar.visible = true
