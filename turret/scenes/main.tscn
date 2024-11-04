@@ -1,13 +1,12 @@
-[gd_scene load_steps=11 format=4 uid="uid://gcjbf48b3da0"]
+[gd_scene load_steps=10 format=4 uid="uid://gcjbf48b3da0"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_0k4ww"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_0k4ww"]
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_vsobv"]
 [ext_resource type="PackedScene" uid="uid://cu6i4ku1ruqin" path="res://ui.tscn" id="4_qjdo3"]
 [ext_resource type="PackedScene" uid="uid://d0mqlysvrcnf2" path="res://scenes/level.tscn" id="8_eegj8"]
-[ext_resource type="PackedScene" uid="uid://cieq11ff07ox7" path="res://scenes/spawner.tscn" id="8_kqgna"]
 [ext_resource type="PackedScene" uid="uid://c07bh54ch4tky" path="res://scenes/enemies.tscn" id="9_qjuoj"]
-[ext_resource type="Script" path="res://scripts/tempSpawner.gd" id="11_xcbr0"]
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="11_xcbr0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_me14v"]
 texture = ExtResource("2_vsobv")
@@ -1275,20 +1274,70 @@ cannon = NodePath("../cannon")
 
 [node name="Level" parent="." instance=ExtResource("8_eegj8")]
 
-[node name="Spawner5" parent="Level" instance=ExtResource("8_kqgna")]
+[node name="Spawner5" parent="Level"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(401, -60)
+script = null
 
-[node name="Spawner4" parent="Level" instance=ExtResource("8_kqgna")]
+[node name="Spawner4" parent="Level"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(921, -71)
+script = null
 
-[node name="Spawner3" parent="Level" instance=ExtResource("8_kqgna")]
+[node name="Spawner3" parent="Level"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(602, -81)
+script = null
 
-[node name="Spawner2" parent="Level" instance=ExtResource("8_kqgna")]
+[node name="Spawner2" parent="Level"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(216, -55)
+script = null
 
-[node name="Spawner6" parent="Level" instance=ExtResource("8_kqgna")]
+[node name="Spawner6" parent="Level"]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(-16, 683)
+script = null
 
 [node name="tempSpawner" type="Node2D" parent="."]
 script = ExtResource("11_xcbr0")
