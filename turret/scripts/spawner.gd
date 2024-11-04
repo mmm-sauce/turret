@@ -1,7 +1,8 @@
 extends Node2D
 
 # Exported Variables
-@export var enemyScene: PackedScene  # Reference to the enemy PackedScene (e.g., Enemy.tscn)
+@export var enemyScene: PackedScene  # Reference to the enemy PackedScene (e.g., enemies.tscn)
+@export var healScene: PackedScene  # Reference to the heal PackedScene (e.g., heal.tscn)
 @export var spawnTimer: float = 5.0  # Initial time between spawns in seconds
 @export var levelTime: float = 20.0  # Time after which spawn rate increases
 @export var timeDecrease: float = 0.5  # Amount to decrease spawn interval
@@ -9,7 +10,10 @@ extends Node2D
 
 # Internal Variables
 var elapsedTime: float = 0.0
-var spawning = false
+var enemySpawning = false
+var healSpawning = false
+var heals = 0
+var maxHeals = 3
 
 # Rectangle Dimensions (Portrait Orientation)
 const RECT_WIDTH: float = 1080	# Width of the spawn area
@@ -22,14 +26,22 @@ func _process(delta: float) -> void:
 	if not get_tree().paused == true:
 		elapsedTime += delta
 	
-	if not spawning:
-		spawning = true
+	if not enemySpawning:
+		enemySpawning = true
 		await get_tree().create_timer(spawnTimer).timeout
 		if not get_tree().paused == true:
 			_spawn_enemy()
-		spawning = false
+		enemySpawning = false
 		
 	
+	if not healSpawning && heals < maxHeals:
+		heals += 1
+		healSpawning = true
+		await get_tree().create_timer(randi_range(1,5)).timeout
+		if not get_tree().paused == true:
+			spawn_heal()
+		healSpawning = false
+		
 	# Check if it's time to increase spawn speed
 	if elapsedTime >= levelTime:
 		_increase_spawn_speed()
@@ -75,6 +87,13 @@ func get_random_border_position() -> Vector2:
 			pos.y = randf_range(0, RECT_HEIGHT)
 	
 	return pos
+
+func spawn_heal():
+	print("Soo close")
+	var heal = healScene.instantiate()
+	get_parent().add_child(heal)
+	heal.position = Vector2(randf_range(0, RECT_WIDTH), randf_range(0, RECT_HEIGHT))
+	
 
 func _increase_spawn_speed() -> void:
 	# Decrease the spawn interval to increase spawn rate
