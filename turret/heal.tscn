@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://2c3dsoftnhcs"]
+
+[ext_resource type="Script" path="res://heal.gd" id="1_07bnb"]
+[ext_resource type="Texture2D" uid="uid://jkevj5owxlr3" path="res://assets/allSprites_retina.png" id="2_oyggk"]
+[ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="3_r3mhe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37uj6"]
+atlas = ExtResource("2_oyggk")
+region = Rect2(860, 92, 92, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpl46"]
+atlas = ExtResource("2_oyggk")
+region = Rect2(765, 507, 113, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6q2p"]
+atlas = ExtResource("2_oyggk")
+region = Rect2(640, 256, 127, 127)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5a31y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6q2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uj6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkfsd"]
+size = Vector2(106, 69.5)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_07bnb")
+
+[node name="Explosion" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_5a31y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.999999, 0.347348, 0.20898, 1)
+texture = ExtResource("3_r3mhe")
+region_enabled = true
+region_rect = Rect2(2048, 1408, 128, 128)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(0.69, 0.69)
+texture = ExtResource("3_r3mhe")
+region_enabled = true
+region_rect = Rect2(1664, 1537, 128, 127)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mkfsd")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

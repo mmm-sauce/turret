@@ -1,7 +1,28 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0mqlysvrcnf2"]
 
 [ext_resource type="Script" path="res://scripts/scoreboard.gd" id="1_3ethi"]
-[ext_resource type="Script" path="res://scripts/spawner.gd" id="2_0nady"]
+
+[sub_resource type="GDScript" id="GDScript_w46eb"]
+script/source = "extends Node2D
+
+var Enemies = preload(\"res://scripts/enemies.gd\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_timer_timeout() -> void:
+	var newenemies = Enemies.instaniate()
+	add_child(newenemies)
+	newenemies.position.x = randi_range(0,get_viewport().size.x)
+	
+	"
 
 [node name="Level" type="Node2D"]
 
@@ -13,4 +34,4 @@ offset_bottom = 40.0
 script = ExtResource("1_3ethi")
 
 [node name="Spawner" type="Node2D" parent="."]
-script = ExtResource("2_0nady")
+script = SubResource("GDScript_w46eb")
