@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://xtbcto8k0rkw"]
+[gd_scene load_steps=14 format=3 uid="uid://xtbcto8k0rkw"]
 
 [ext_resource type="Script" path="res://scripts/cannon.gd" id="1_l76yn"]
 [ext_resource type="Texture2D" uid="uid://donnmqf5gxtxm" path="res://assets/towerDefense_tilesheet@2.png" id="1_rjays"]
 [ext_resource type="PackedScene" uid="uid://dxmf0pbjr4we2" path="res://scenes/bullet.tscn" id="2_l7rtr"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="3_c1dhx"]
 [ext_resource type="Texture2D" uid="uid://d2fk2um2xow0y" path="res://assets/towerDefense_tilesheet@3.png" id="5_cjd1w"]
+[ext_resource type="AudioStream" uid="uid://bfdkenxhdytve" path="res://audio/sfx/Laser_Gun.wav" id="6_61drf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6luh0"]
 atlas = ExtResource("3_c1dhx")
@@ -56,4 +57,19 @@ shape = SubResource("CapsuleShape2D_pfwnk")
 position = Vector2(74, -12)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(74, 12)
+position = Vector2(112, 12)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 5
+offset_left = -73.0
+offset_top = -87.0
+offset_right = 73.0
+offset_bottom = -65.0
+theme_override_styles/background = SubResource("StyleBoxFlat_wvqxr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qt5a7")
+max_value = 500.0
+value = 50.0
+show_percentage = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_61drf")

@@ -1,13 +1,83 @@
-[gd_scene load_steps=3 format=3 uid="uid://7ikr5q5m8s7d"]
+[gd_scene load_steps=14 format=3 uid="uid://c07bh54ch4tky"]
 
 [ext_resource type="Script" path="res://scripts/enemies.gd" id="1_iy6ca"]
-[ext_resource type="Texture2D" uid="uid://jwycrr0kkfie" path="res://icon.svg" id="1_kvqlc"]
+[ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_hdjkr"]
+[ext_resource type="PackedScene" uid="uid://dxmf0pbjr4we2" path="res://scenes/bullet.tscn" id="2_uhi3o"]
+[ext_resource type="AudioStream" uid="uid://b2soequfwjf68" path="res://audio/sfx/Explosion.wav" id="4_fo77d"]
+[ext_resource type="Texture2D" uid="uid://jkevj5owxlr3" path="res://assets/allSprites_retina.png" id="4_kahv5"]
+[ext_resource type="AudioStream" uid="uid://6c534h6xnik0" path="res://audio/sfx/mixkit-game-gun-shot-1662.mp3" id="5_p7x2m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0611"]
+radius = 41.0
+height = 120.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37uj6"]
+atlas = ExtResource("4_kahv5")
+region = Rect2(860, 92, 92, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpl46"]
+atlas = ExtResource("4_kahv5")
+region = Rect2(765, 507, 113, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6q2p"]
+atlas = ExtResource("4_kahv5")
+region = Rect2(640, 256, 127, 127)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pbqhe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6q2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uj6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2xxk"]
+bg_color = Color(0.588235, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wskv"]
+bg_color = Color(0.811765, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Enemies" type="Area2D"]
 script = ExtResource("1_iy6ca")
 
 [node name="Plane" type="Sprite2D" parent="."]
-texture = ExtResource("1_kvqlc")
+z_index = 4
+texture = ExtResource("2_hdjkr")
+region_enabled = true
+region_rect = Rect2(2304, 1408, 128, 128)
+
+[node name="planeshoot" type="AudioStreamPlayer2D" parent="Plane"]
+stream = ExtResource("5_p7x2m")
+
+[node name="planeexplode" type="AudioStreamPlayer2D" parent="Plane"]
+stream = ExtResource("4_fo77d")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(0, 54.925)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_hdjkr")
+region_enabled = true
+region_rect = Rect2(2304, 1536, 128, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 

@@ -1,14 +1,13 @@
 [gd_scene load_steps=12 format=4 uid="uid://dm714akg7kum1"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_0k4ww"]
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_vsobv"]
-[ext_resource type="Script" path="res://scripts/upgrades.gd" id="3_c8f2t"]
-[ext_resource type="Texture2D" uid="uid://c6qf2ycxqek1t" path="res://assets/Double/rotate_cw.png" id="3_oou2k"]
-[ext_resource type="Texture2D" uid="uid://nwega2hpqe7f" path="res://assets/Double/busy_hourglass_outline_detail.png" id="4_h0gce"]
-[ext_resource type="Texture2D" uid="uid://buttx5chaswa6" path="res://assets/Double/resize_c_diagonal_mirror.png" id="5_6o4vg"]
-[ext_resource type="LabelSettings" uid="uid://cadtaiwa2eo80" path="res://assets/Fonts/label setting.tres" id="5_xofqo"]
-[ext_resource type="PackedScene" uid="uid://cieq11ff07ox7" path="res://scenes/spawner.tscn" id="8_kqgna"]
-[ext_resource type="PackedScene" uid="uid://7ikr5q5m8s7d" path="res://scenes/enemies.tscn" id="9_qjuoj"]
+[ext_resource type="PackedScene" uid="uid://cu6i4ku1ruqin" path="res://scenes/ui.tscn" id="4_qjdo3"]
+[ext_resource type="PackedScene" uid="uid://2c3dsoftnhcs" path="res://heal.tscn" id="8_1pe6c"]
+[ext_resource type="PackedScene" uid="uid://d0mqlysvrcnf2" path="res://scenes/level.tscn" id="8_eegj8"]
+[ext_resource type="PackedScene" uid="uid://c07bh54ch4tky" path="res://scenes/enemies.tscn" id="9_qjuoj"]
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="11_xcbr0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_me14v"]
 texture = ExtResource("2_vsobv")
@@ -1288,51 +1287,7 @@ texture_normal = ExtResource("3_oou2k")
 stretch_mode = 3
 flip_v = true
 
-[node name="tsCost" type="Label" parent="Upgrades"]
-layout_mode = 2
-text = "10"
-label_settings = ExtResource("5_xofqo")
-horizontal_alignment = 1
-
-[node name="tsCost2" type="Label" parent="Upgrades"]
-layout_mode = 2
-label_settings = ExtResource("5_xofqo")
-horizontal_alignment = 1
-
-[node name="ShotCD" type="TextureButton" parent="Upgrades"]
-layout_mode = 2
-texture_normal = ExtResource("4_h0gce")
-
-[node name="cdCost" type="Label" parent="Upgrades"]
-layout_mode = 2
-text = "10"
-label_settings = ExtResource("5_xofqo")
-horizontal_alignment = 1
-
-[node name="cdCost2" type="Label" parent="Upgrades"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="BurstShots" type="TextureButton" parent="Upgrades"]
-layout_mode = 2
-texture_normal = ExtResource("5_6o4vg")
-
-[node name="bsCost" type="Label" parent="Upgrades"]
-layout_mode = 2
-text = "10"
-label_settings = ExtResource("5_xofqo")
-horizontal_alignment = 1
-
-[node name="bsCost2" type="Label" parent="Upgrades"]
-layout_mode = 2
-horizontal_alignment = 1
-
-[node name="Spawner" parent="." instance=ExtResource("8_kqgna")]
-
-[node name="Spawner2" parent="." instance=ExtResource("8_kqgna")]
-
-[node name="Enemies" parent="." instance=ExtResource("9_qjuoj")]
-
-[connection signal="pressed" from="Upgrades/TurnSpeed" to="Upgrades" method="_on_turn_speed_pressed"]
-[connection signal="pressed" from="Upgrades/ShotCD" to="Upgrades" method="_on_shot_cd_pressed"]
-[connection signal="pressed" from="Upgrades/BurstShots" to="Upgrades" method="_on_burst_shots_pressed"]
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("11_xcbr0")
+enemyScene = ExtResource("9_qjuoj")
+healScene = ExtResource("8_1pe6c")

@@ -4,6 +4,10 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene  # Reference to the bullet scene
 var turnSpeed = 5  # Cannon rotation speed (*UPGRADEABLE!!!!)
 var barrel = 1  # Alternates between barrels for firing
+var maxHealth = 500 # Health
+var isHeal = false # Is currently healing?
+var health = maxHealth
+
 
 # Shooting Mechanics
 var shots = 2  # Number of shots per burst (*UPGRADEABLE!!!!)
@@ -26,8 +30,28 @@ func _input(event):
 		await get_tree().create_timer(shotTimer).timeout
 		shoot = true
 
+func _ready() -> void:
+	$HealthBar.value = health
 
 func _physics_process(delta: float) -> void:
+
+	if not isHeal:
+		isHeal = true
+		health = min(health + 5, maxHealth)
+		await get_tree().create_timer(.5).timeout
+		isHeal = false
+	
+	if $HealthBar.value == maxHealth:
+		$HealthBar.visible = false
+	else:
+		$HealthBar.visible = true
+	
+	# Death hanlding
+	if $HealthBar.value < 0.001:
+		game_over()
+	
+	$HealthBar.value = health
+	
 	update_shot_timer(delta)
 
 	# Rotate towards the click
@@ -65,6 +89,7 @@ func fire_bullet():
 	# Handling barrel animation
 	$AnimatedSprite2D.play('default')
 	await get_tree().create_timer(0.1).timeout
+	$AudioStreamPlayer2D.play()
 
 	# Instancing the bullet
 	var bullet = bullet_scene.instantiate()
