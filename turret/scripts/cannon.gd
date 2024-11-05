@@ -7,7 +7,7 @@ var barrel = 1  # Alternates between barrels for firing
 var maxHealth = 500 # Health
 var isHeal = false # Is currently healing?
 var health = maxHealth
-
+var damage = 25
 
 # Shooting Mechanics
 var shots = 1  # Number of shots per burst (*UPGRADEABLE!!!!)

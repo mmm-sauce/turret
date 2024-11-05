@@ -5,7 +5,7 @@
 [sub_resource type="GDScript" id="GDScript_w46eb"]
 script/source = "extends Node2D
 
-var Enemies = preload(\"res://scripts/enemies.gd\")
+var Enemies = preload(\"res://scripts/enimies.gd\")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,7 +22,8 @@ func _on_timer_timeout() -> void:
 	add_child(newenemies)
 	newenemies.position.x = randi_range(0,get_viewport().size.x)
 	
-	"
+	
+"
 
 [node name="Level" type="Node2D"]
 

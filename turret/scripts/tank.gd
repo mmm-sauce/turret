@@ -15,24 +15,38 @@ var cannonAngle = 0  # Angle to rotate towards
 var team = "enemy"
 var angleDiff = 0  # Difference between angles
 var turnSpeed = 1.5  # Speed of rotation
-var speed = 300  # Speed of movement
 var has_reached_cannon = false  # Indicates if the plane has reached the cannon
+
+# Variables between strengths
+var health = 500
+var maxHealth = 500
+var strongHealth = 1000
+var maxStrongHealth = 1000
+
+var speed = 100
+var strongSpeed = 150
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if name == "Strong Tank":
+		health = strongHealth
+		maxHealth = maxStrongHealth
+		
+	$HealthBar.value = health
+	$HealthBar.max_value = maxHealth
 
 func _physics_process(delta: float) -> void:
 		
 	# Stop when dead
-	if $Plane.visible:
+	if $Body.visible:
 		
 		# Death hanlding
 		if $HealthBar.value < 0.001:
 			plane_explode()
 		
-		$HealthBar.global_position = $Plane.global_position - Vector2(73, 75)
+		$HealthBar.global_position = $Body.global_position - Vector2(73, 75)
 		$HealthBar.rotation = -rotation  # Keep the health bar upright
+		$HealthBar.value = health
 		
 		# Determine the angle to rotate towards
 		adjust_angle(delta)
@@ -49,12 +63,18 @@ func _physics_process(delta: float) -> void:
 			is_firing = false
 
 func plane_explode():
-	$Plane/planeexplode.play()
-	$Shadow.visible = false
-	$Plane.visible = false
-	get_parent().coins += 2
+	$Body/planeexplode.play()
+	$Turret.visible = false
+	$Body.visible = false
+	get_parent().get_parent().coins += 2
 	$Explosion.visible = true
 	$Explosion.play("default")
+	
+	if name == "Strong Tank":
+		get_parent().currentEnimies[4]-=1
+	else:
+		get_parent().currentEnimies[3]-=1
+		
 	await get_tree().create_timer(.33).timeout
 	queue_free()
 
@@ -82,14 +102,14 @@ func rotate_towards_cannon(delta):
 	rotation += sign(angleDiff) * min(abs(angleDiff), turnSpeed * delta)
 	
 	# Update shadow position
-	$Shadow.global_position = $Plane.global_position + Vector2(0, 20)
+	$Turret.global_position = $Body.global_position + Vector2(0, 20)
 	
 	return angleDiff
 
 func fire_bullet():
 	# Instance the bullet
 	var bullet = bullet_scene.instantiate()
-	$Plane/planeshoot.play()
+	$Body/planeshoot.play()
 	
 	# Set bullet position and rotation
 	bullet.global_position = $Marker2D.global_position
@@ -103,5 +123,5 @@ func fire_bullet():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name == "Bullet" && area.get_parent().trueParent == "cannon":
-		$HealthBar.value -= 25
+		health -= get_parent().get_parent().get_node("cannon").damage
 		$HealthBar.visible = true
