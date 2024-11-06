@@ -33,6 +33,7 @@ func _process(delta: float) -> void:
 	
 
 func _on_turn_speed_pressed() -> void:
+	$menuselect.play()
 	if get_parent().coins >= tsCost:
 		cannon.turnSpeed += 1
 		get_parent().coins -= tsCost
@@ -40,6 +41,7 @@ func _on_turn_speed_pressed() -> void:
 		
 
 func _on_shot_cd_pressed() -> void:
+	$menuselect.play()
 	if get_parent().coins >= cdCost:
 		cannon.shotCD = cannon.shotCD*.8
 		get_parent().coins -= cdCost
@@ -47,12 +49,14 @@ func _on_shot_cd_pressed() -> void:
 
 
 func _on_burst_shots_pressed() -> void:
+	$menuselect.play()
 	if get_parent().coins >= bsCost:
 		cannon.shots += 1
 		get_parent().coins -= bsCost
 		bsCost += 5
 
 func _on_popup_pressed() -> void:
+	$menuopen.play()
 	if not popping:
 		popping = true
 		# Changes step and max based on whether the menu is already out or not
@@ -67,3 +71,4 @@ func _on_popup_pressed() -> void:
 				await get_tree().create_timer(.005).timeout
 				Vseperation = EasingFunctions.ease_out_bounce(-100, 0, float(i)/100)
 		popping = false
+		$menuclose.play()
