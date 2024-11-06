@@ -1,12 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://dm714akg7kum1"]
+[gd_scene load_steps=10 format=4 uid="uid://gcjbf48b3da0"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0k4ww"]
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_vsobv"]
 [ext_resource type="PackedScene" uid="uid://cu6i4ku1ruqin" path="res://scenes/ui.tscn" id="4_qjdo3"]
-[ext_resource type="PackedScene" uid="uid://2c3dsoftnhcs" path="res://heal.tscn" id="8_1pe6c"]
-[ext_resource type="PackedScene" uid="uid://d0mqlysvrcnf2" path="res://scenes/level.tscn" id="8_eegj8"]
-[ext_resource type="PackedScene" uid="uid://c07bh54ch4tky" path="res://scenes/enemies.tscn" id="9_qjuoj"]
+[ext_resource type="PackedScene" path="res://scenes/enimies.tscn" id="7_25eth"]
+[ext_resource type="PackedScene" path="res://scenes/heal.tscn" id="7_qattw"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="11_xcbr0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_me14v"]
@@ -1255,6 +1254,7 @@ tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_me14v")
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_0k4ww")
 
 [node name="cannon" parent="." instance=ExtResource("1_hxedp")]
 z_index = 1
@@ -1269,25 +1269,10 @@ tile_set = SubResource("TileSet_f6dyj")
 tile_map_data = PackedByteArray("AAAFAAEAAAARAAUAAAADAAEAAAAVAAUAAAABAAEAAAATAAUAAAAHAAIAAAAUAAUAAAACAAMAAAAPAAUAAAAEAA0AAAATAAUAAAABAA0AAAARAAUAAAAIAAgAAAATAAUAAAADAAsAAAAUAAUAAAAFAAYAAAATAAAAAAABAAgAAAAUAAAAAAAHAAUAAAAUAAAAAAAHAAsAAAAVAAAAAAA=")
 tile_set = SubResource("TileSet_f6dyj")
 
-[node name="Upgrades" type="VBoxContainer" parent="." node_paths=PackedStringArray("cannon")]
-z_index = 5
-clip_contents = true
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 96.0
-offset_bottom = 315.0
-scale = Vector2(1.5, 1.5)
-theme_override_constants/separation = -10
-script = ExtResource("3_c8f2t")
+[node name="UI" parent="." node_paths=PackedStringArray("cannon") instance=ExtResource("4_qjdo3")]
 cannon = NodePath("../cannon")
-
-[node name="TurnSpeed" type="TextureButton" parent="Upgrades"]
-layout_mode = 2
-texture_normal = ExtResource("3_oou2k")
-stretch_mode = 3
-flip_v = true
 
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("11_xcbr0")
-enemyScene = ExtResource("9_qjuoj")
-healScene = ExtResource("8_1pe6c")
+enemyScene = ExtResource("7_25eth")
+healScene = ExtResource("7_qattw")

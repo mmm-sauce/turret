@@ -1,10 +1,6 @@
-extends VBoxContainer
+extends Node2D
 
 @export var cannon = CharacterBody2D
-
-@onready var ts_cost: Label = $tsCost
-@onready var cd_cost: Label = $cdCost
-@onready var bs_cost: Label = $bsCost
 
 var tsCost = 10
 var cdCost = 10
