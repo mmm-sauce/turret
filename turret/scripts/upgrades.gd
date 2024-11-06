@@ -25,9 +25,9 @@ func _process(delta: float) -> void:
 	$Sprite2D2.set_modulate(Color(1,1,1,(Vseperation+100)/100))
 	$Upgrades.add_theme_constant_override("v_separation", Vseperation)
 	
-	$Upgrades/tsCost.text = "turn speed - "+str(tsCost)+" coins"
-	$Upgrades/cdCost.text = "burst cooldown - "+str(cdCost)+" coins"
-	$Upgrades/bsCost.text = "more shots - "+str(bsCost)+" coins"
+	$Upgrades/TurnSpeed/tsCost.text = "turn speed - "+str(tsCost)+" coins"
+	$Upgrades/ShotCD/cdCost.text = "burst cooldown - "+str(cdCost)+" coins"
+	$Upgrades/BurstShots/bsCost.text = "more shots - "+str(bsCost)+" coins"
 	$Coins.text = str(get_parent().coins)
 	
 	
