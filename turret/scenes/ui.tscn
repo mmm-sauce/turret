@@ -100,18 +100,33 @@ text = "  "
 label_settings = SubResource("LabelSettings_egs88")
 horizontal_alignment = 1
 
+[node name="tsCost" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "GAME PAUSED"
+label_settings = ExtResource("3_pnyjo")
+
 [node name="TurnSpeed" type="TextureButton" parent="Upgrades"]
 layout_mode = 2
 texture_normal = ExtResource("4_rqlod")
 stretch_mode = 3
 flip_v = true
 
-[node name="tsCost" type="Label" parent="Upgrades"]
+[node name="tsCost" type="Label" parent="Upgrades/TurnSpeed"]
 layout_mode = 2
+offset_left = 79.0
+offset_top = 14.0
+offset_right = 529.0
+offset_bottom = 50.0
 text = "turn Speed - 10 coins"
 label_settings = ExtResource("3_pnyjo")
 
 [node name="Spacer4" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = ExtResource("3_pnyjo")
+horizontal_alignment = 1
+
+[node name="Spacer8" type="Label" parent="Upgrades"]
 layout_mode = 2
 text = "  "
 label_settings = ExtResource("3_pnyjo")
@@ -128,12 +143,22 @@ layout_mode = 2
 texture_normal = ExtResource("5_65vr0")
 stretch_mode = 3
 
-[node name="cdCost" type="Label" parent="Upgrades"]
+[node name="cdCost" type="Label" parent="Upgrades/ShotCD"]
 layout_mode = 2
+offset_left = 79.0
+offset_top = 14.0
+offset_right = 529.0
+offset_bottom = 50.0
 text = "Shot cooldown - 10 coins"
 label_settings = ExtResource("3_pnyjo")
 
 [node name="Spacer6" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = ExtResource("3_pnyjo")
+horizontal_alignment = 1
+
+[node name="Spacer9" type="Label" parent="Upgrades"]
 layout_mode = 2
 text = "  "
 label_settings = ExtResource("3_pnyjo")
@@ -150,8 +175,12 @@ layout_mode = 2
 texture_normal = ExtResource("6_eadr4")
 stretch_mode = 3
 
-[node name="bsCost" type="Label" parent="Upgrades"]
+[node name="bsCost" type="Label" parent="Upgrades/BurstShots"]
 layout_mode = 2
+offset_left = 79.0
+offset_top = 14.0
+offset_right = 477.0
+offset_bottom = 50.0
 text = "burst shots - 10 coins
 "
 label_settings = ExtResource("3_pnyjo")
