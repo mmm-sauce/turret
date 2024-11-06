@@ -10,7 +10,7 @@ var health = maxHealth
 
 
 # Shooting Mechanics
-var shots = 1  # Number of shots per burst (*UPGRADEABLE!!!!)
+var shots = 2  # Number of shots per burst (*UPGRADEABLE!!!!)
 var shoot = false  # Indicates if the cannon should shoot
 var clickPos = Vector2.ZERO  # Position of the last click
 var clickAngle = 0  # Angle to rotate towards
@@ -67,12 +67,6 @@ func _physics_process(delta: float) -> void:
 			# $AudioStreamPlayer2D.play()
 
 	handle_animation()
-	
-	$HealthBar.global_position = global_position - Vector2(73, 125)
-	$HealthBar.rotation = -rotation
-
-func game_over():
-	pass
 
 func rotate_towards_click(delta):
 	var angleDiff = clickAngle - rotation
@@ -99,9 +93,7 @@ func fire_bullet():
 
 	# Instancing the bullet
 	var bullet = bullet_scene.instantiate()
-	
-	bullet.trueParent = "cannon"
-	
+
 	# Shooting bullet out of alternating barrels
 	if barrel == 1:
 		bullet.position = get_node("Marker2D").global_position

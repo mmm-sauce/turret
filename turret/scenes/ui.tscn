@@ -33,12 +33,12 @@ font_size = 9
 process_mode = 3
 z_index = 10
 scale = Vector2(1.5, 1.5)
-script = ExtResource("1_gagf1")
+script = ExtResource("1_qgk6y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(64, 64)
 scale = Vector2(2, 2)
-texture = ExtResource("2_e187h")
+texture = ExtResource("2_pk4tu")
 region_enabled = true
 region_rect = Rect2(2432, 1408, 128, 128)
 
@@ -66,7 +66,7 @@ text = "
 
 
 "
-label_settings = ExtResource("3_pnyjo")
+label_settings = ExtResource("3_dpvop")
 
 [node name="Popup" type="TextureButton" parent="."]
 process_mode = 3
@@ -107,7 +107,7 @@ label_settings = ExtResource("3_pnyjo")
 
 [node name="TurnSpeed" type="TextureButton" parent="Upgrades"]
 layout_mode = 2
-texture_normal = ExtResource("4_rqlod")
+texture_normal = ExtResource("5_8k7fi")
 stretch_mode = 3
 flip_v = true
 

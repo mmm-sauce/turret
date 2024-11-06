@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://gcjbf48b3da0"]
+[gd_scene load_steps=12 format=4 uid="uid://dm714akg7kum1"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0k4ww"]
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
@@ -1255,7 +1255,6 @@ tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_me14v")
 
 [node name="Main" type="Node2D"]
-script = ExtResource("1_0k4ww")
 
 [node name="cannon" parent="." instance=ExtResource("1_hxedp")]
 z_index = 1
@@ -1270,10 +1269,23 @@ tile_set = SubResource("TileSet_f6dyj")
 tile_map_data = PackedByteArray("AAAFAAEAAAARAAUAAAADAAEAAAAVAAUAAAABAAEAAAATAAUAAAAHAAIAAAAUAAUAAAACAAMAAAAPAAUAAAAEAA0AAAATAAUAAAABAA0AAAARAAUAAAAIAAgAAAATAAUAAAADAAsAAAAUAAUAAAAFAAYAAAATAAAAAAABAAgAAAAUAAAAAAAHAAUAAAAUAAAAAAAHAAsAAAAVAAAAAAA=")
 tile_set = SubResource("TileSet_f6dyj")
 
-[node name="UI" parent="." node_paths=PackedStringArray("cannon") instance=ExtResource("4_qjdo3")]
+[node name="Upgrades" type="VBoxContainer" parent="." node_paths=PackedStringArray("cannon")]
+z_index = 5
+clip_contents = true
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 315.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/separation = -10
+script = ExtResource("3_c8f2t")
 cannon = NodePath("../cannon")
 
-[node name="Level" parent="." instance=ExtResource("8_eegj8")]
+[node name="TurnSpeed" type="TextureButton" parent="Upgrades"]
+layout_mode = 2
+texture_normal = ExtResource("3_oou2k")
+stretch_mode = 3
+flip_v = true
 
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("11_xcbr0")

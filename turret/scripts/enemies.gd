@@ -1,22 +1,5 @@
 extends Area2D
 
-# Bullet properties
-@export var bullet_scene: PackedScene  # Reference to the bullet scene
-
-# Firing control variables
-var is_firing = false
-var shotTimer = 1  # Time between shots
-
-# Cannon properties
-var cannonPos = Vector2(540, 960)  # Position of the cannon
-var cannonAngle = 0  # Angle to rotate towards
-
-# Plane properties 
-var team = "enemy"
-var angleDiff = 0  # Difference between angles
-var turnSpeed = 1.5  # Speed of rotation
-var speed = 300  # Speed of movement
-var has_reached_cannon = false  # Indicates if the plane has reached the cannon
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -101,7 +84,6 @@ func fire_bullet():
 	get_parent().add_child(bullet)
 
 
-func _on_area_entered(area: Area2D) -> void:
-	if area.name == "Bullet" && area.get_parent().trueParent == "cannon":
-		$HealthBar.value -= 25
-		$HealthBar.visible = true
+func _on_body_entered(body: Node2D) -> void:
+	get_parent().get_parent().get_node("label")
+	queue_free()
