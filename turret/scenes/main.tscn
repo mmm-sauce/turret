@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_vsobv"]
 [ext_resource type="PackedScene" uid="uid://cu6i4ku1ruqin" path="res://scenes/ui.tscn" id="4_qjdo3"]
-[ext_resource type="PackedScene" path="res://scenes/enimies.tscn" id="7_25eth"]
-[ext_resource type="PackedScene" path="res://scenes/heal.tscn" id="7_qattw"]
+[ext_resource type="PackedScene" uid="uid://c07bh54ch4tky" path="res://scenes/enemies.tscn" id="7_25eth"]
+[ext_resource type="PackedScene" uid="uid://2c3dsoftnhcs" path="res://scenes/heal.tscn" id="7_qattw"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="11_xcbr0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_me14v"]

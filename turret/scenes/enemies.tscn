@@ -1,15 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://c07bh54ch4tky"]
+[gd_scene load_steps=12 format=3 uid="uid://c07bh54ch4tky"]
 
 [ext_resource type="Script" path="res://scripts/enemies.gd" id="1_iy6ca"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_hdjkr"]
-[ext_resource type="PackedScene" uid="uid://dxmf0pbjr4we2" path="res://scenes/bullet.tscn" id="2_uhi3o"]
 [ext_resource type="AudioStream" uid="uid://b2soequfwjf68" path="res://audio/sfx/Explosion.wav" id="4_fo77d"]
 [ext_resource type="Texture2D" uid="uid://jkevj5owxlr3" path="res://assets/allSprites_retina.png" id="4_kahv5"]
 [ext_resource type="AudioStream" uid="uid://6c534h6xnik0" path="res://audio/sfx/mixkit-game-gun-shot-1662.mp3" id="5_p7x2m"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0611"]
-radius = 41.0
-height = 120.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37uj6"]
 atlas = ExtResource("4_kahv5")
@@ -81,7 +76,6 @@ region_rect = Rect2(2304, 1536, 128, 128)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [node name="Explosion" type="AnimatedSprite2D" parent="."]
 visible = false
 z_index = 4
@@ -103,3 +97,4 @@ value = 100.0
 show_percentage = false
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

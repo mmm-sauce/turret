@@ -1,12 +1,77 @@
-[gd_scene load_steps=2 format=3 uid="uid://tav428hi7foc"]
+[gd_scene load_steps=7 format=3 uid="uid://tav428hi7foc"]
 
 [ext_resource type="FontFile" uid="uid://b7jvr41u6swsj" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="1_qd8io"]
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="3_5y4oo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82uao"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.824432, 0.7923, 0, 1)
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_caxxl"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klshb"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.823529, 0.792157, 0, 1)
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjfgj"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label"]
-offset_left = 243.0
-offset_top = 867.0
-offset_right = 846.0
-offset_bottom = 980.0
+offset_left = 159.0
+offset_top = 409.0
+offset_right = 943.0
+offset_bottom = 556.0
 theme_override_fonts/font = ExtResource("1_qd8io")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 130
 text = "Game Over"
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+script = ExtResource("3_5y4oo")
+
+[node name="Start" type="Button" parent="GameOver"]
+offset_left = 249.0
+offset_top = 834.0
+offset_right = 792.0
+offset_bottom = 936.0
+theme_override_colors/font_hover_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_fonts/font = ExtResource("1_qd8io")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_82uao")
+theme_override_styles/normal = SubResource("StyleBoxFlat_caxxl")
+text = "Restart
+"
+
+[node name="Quit" type="Button" parent="GameOver"]
+offset_left = 232.0
+offset_top = 977.0
+offset_right = 801.0
+offset_bottom = 1079.0
+theme_override_colors/font_hover_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_fonts/font = ExtResource("1_qd8io")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_klshb")
+theme_override_styles/normal = SubResource("StyleBoxFlat_cjfgj")
+text = "Quit
+"
+
+[connection signal="pressed" from="GameOver/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="GameOver/Quit" to="." method="_on_quit_pressed"]
