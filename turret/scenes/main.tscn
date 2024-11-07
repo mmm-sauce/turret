@@ -1,5 +1,6 @@
 [gd_scene load_steps=10 format=4 uid="uid://gcjbf48b3da0"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_0k4ww"]
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_vsobv"]
 [ext_resource type="PackedScene" uid="uid://cu6i4ku1ruqin" path="res://scenes/ui.tscn" id="4_qjdo3"]
