@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://1i3ymmibon0y"]
-
-[ext_resource type="AudioStream" uid="uid://3qedpniev13t" path="res://audio/music/mixkit-game-level-music-689 (1).mp3" id="1_xigrp"]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_xigrp")
-autoplay = true

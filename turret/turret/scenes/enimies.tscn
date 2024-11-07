@@ -1,0 +1,263 @@
+[gd_scene load_steps=17 format=3 uid="uid://2v0b1goyfxnv"]
+
+[ext_resource type="Script" path="res://scripts/enimies.gd" id="1_dyyls"]
+[ext_resource type="Script" path="res://scripts/plane.gd" id="2_eq110"]
+[ext_resource type="PackedScene" uid="uid://dxmf0pbjr4we2" path="res://scenes/bullet.tscn" id="3_y7eol"]
+[ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="4_354qv"]
+[ext_resource type="AudioStream" uid="uid://6c534h6xnik0" path="res://audio/sfx/mixkit-game-gun-shot-1662.mp3" id="5_or0kn"]
+[ext_resource type="AudioStream" uid="uid://b2soequfwjf68" path="res://audio/sfx/Explosion.wav" id="6_1q86i"]
+[ext_resource type="Texture2D" uid="uid://jkevj5owxlr3" path="res://assets/allSprites_retina.png" id="7_axj26"]
+[ext_resource type="Script" path="res://scripts/tank.gd" id="8_maxja"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0611"]
+radius = 57.0
+height = 120.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37uj6"]
+atlas = ExtResource("7_axj26")
+region = Rect2(860, 92, 92, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpl46"]
+atlas = ExtResource("7_axj26")
+region = Rect2(765, 507, 113, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6q2p"]
+atlas = ExtResource("7_axj26")
+region = Rect2(640, 256, 127, 127)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pbqhe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6q2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uj6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2xxk"]
+bg_color = Color(0.588235, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1wskv"]
+bg_color = Color(0.811765, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6t6r"]
+size = Vector2(100, 68)
+
+[node name="Enimies" type="Node2D"]
+script = ExtResource("1_dyyls")
+
+[node name="Plane" type="Area2D" parent="."]
+z_index = 2
+script = ExtResource("2_eq110")
+bullet_scene = ExtResource("3_y7eol")
+
+[node name="Plane" type="Sprite2D" parent="Plane"]
+z_index = 1
+texture = ExtResource("4_354qv")
+region_enabled = true
+region_rect = Rect2(2177, 1409, 128, 128)
+
+[node name="planeshoot" type="AudioStreamPlayer2D" parent="Plane/Plane"]
+stream = ExtResource("5_or0kn")
+
+[node name="planeexplode" type="AudioStreamPlayer2D" parent="Plane/Plane"]
+stream = ExtResource("6_1q86i")
+
+[node name="Shadow" type="Sprite2D" parent="Plane"]
+position = Vector2(0, 54.925)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_354qv")
+region_enabled = true
+region_rect = Rect2(2177, 1537, 128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plane"]
+shape = SubResource("CapsuleShape2D_q0611")
+
+[node name="Explosion" type="AnimatedSprite2D" parent="Plane"]
+visible = false
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_pbqhe")
+
+[node name="Marker2D" type="Marker2D" parent="Plane"]
+position = Vector2(73, 0)
+
+[node name="HealthBar" type="ProgressBar" parent="Plane"]
+visible = false
+z_index = 3
+offset_left = -73.0
+offset_top = -87.0
+offset_right = 73.0
+offset_bottom = -65.0
+theme_override_styles/background = SubResource("StyleBoxFlat_g2xxk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1wskv")
+value = 100.0
+show_percentage = false
+
+[node name="Strong Plane" type="Area2D" parent="."]
+visible = false
+z_index = 2
+script = ExtResource("2_eq110")
+bullet_scene = ExtResource("3_y7eol")
+
+[node name="Plane" type="Sprite2D" parent="Strong Plane"]
+z_index = 1
+texture = ExtResource("4_354qv")
+region_enabled = true
+region_rect = Rect2(2304, 1408, 128, 128)
+
+[node name="planeshoot" type="AudioStreamPlayer2D" parent="Strong Plane/Plane"]
+stream = ExtResource("5_or0kn")
+
+[node name="planeexplode" type="AudioStreamPlayer2D" parent="Strong Plane/Plane"]
+stream = ExtResource("6_1q86i")
+
+[node name="Shadow" type="Sprite2D" parent="Strong Plane"]
+position = Vector2(0, 54.925)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_354qv")
+region_enabled = true
+region_rect = Rect2(2304, 1536, 128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Strong Plane"]
+shape = SubResource("CapsuleShape2D_q0611")
+
+[node name="Explosion" type="AnimatedSprite2D" parent="Strong Plane"]
+visible = false
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_pbqhe")
+
+[node name="Marker2D" type="Marker2D" parent="Strong Plane"]
+position = Vector2(73, 0)
+
+[node name="HealthBar" type="ProgressBar" parent="Strong Plane"]
+visible = false
+z_index = 3
+offset_left = -73.0
+offset_top = -87.0
+offset_right = 73.0
+offset_bottom = -65.0
+theme_override_styles/background = SubResource("StyleBoxFlat_g2xxk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1wskv")
+value = 100.0
+show_percentage = false
+
+[node name="Tank" type="Area2D" parent="."]
+visible = false
+z_index = 2
+script = ExtResource("8_maxja")
+bullet_scene = ExtResource("3_y7eol")
+
+[node name="Body" type="Sprite2D" parent="Tank"]
+z_index = 1
+texture = ExtResource("4_354qv")
+region_enabled = true
+region_rect = Rect2(1921, 1409, 128, 128)
+
+[node name="planeshoot" type="AudioStreamPlayer2D" parent="Tank/Body"]
+stream = ExtResource("5_or0kn")
+
+[node name="planeexplode" type="AudioStreamPlayer2D" parent="Tank/Body"]
+stream = ExtResource("6_1q86i")
+
+[node name="Turret" type="Sprite2D" parent="Tank"]
+z_index = 4
+position = Vector2(0, -0.0750008)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_354qv")
+region_enabled = true
+region_rect = Rect2(1920, 1536, 128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tank"]
+shape = SubResource("RectangleShape2D_c6t6r")
+
+[node name="Explosion" type="AnimatedSprite2D" parent="Tank"]
+visible = false
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_pbqhe")
+
+[node name="Marker2D" type="Marker2D" parent="Tank"]
+position = Vector2(90, -3)
+
+[node name="HealthBar" type="ProgressBar" parent="Tank"]
+visible = false
+z_index = 5
+offset_left = -73.0
+offset_top = -87.0
+offset_right = 73.0
+offset_bottom = -65.0
+theme_override_styles/background = SubResource("StyleBoxFlat_g2xxk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1wskv")
+value = 100.0
+show_percentage = false
+
+[node name="Strong Tank" type="Area2D" parent="."]
+visible = false
+z_index = 2
+script = ExtResource("8_maxja")
+bullet_scene = ExtResource("3_y7eol")
+
+[node name="Body" type="Sprite2D" parent="Strong Tank"]
+z_index = 1
+texture = ExtResource("4_354qv")
+region_enabled = true
+region_rect = Rect2(2049, 1409, 128, 128)
+
+[node name="planeshoot" type="AudioStreamPlayer2D" parent="Strong Tank/Body"]
+stream = ExtResource("5_or0kn")
+
+[node name="planeexplode" type="AudioStreamPlayer2D" parent="Strong Tank/Body"]
+stream = ExtResource("6_1q86i")
+
+[node name="Turret" type="Sprite2D" parent="Strong Tank"]
+z_index = 4
+position = Vector2(0, -0.0750008)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("4_354qv")
+region_enabled = true
+region_rect = Rect2(2049, 1537, 128, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Strong Tank"]
+shape = SubResource("RectangleShape2D_c6t6r")
+
+[node name="Explosion" type="AnimatedSprite2D" parent="Strong Tank"]
+visible = false
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_pbqhe")
+
+[node name="Marker2D" type="Marker2D" parent="Strong Tank"]
+position = Vector2(90, -3)
+
+[node name="HealthBar" type="ProgressBar" parent="Strong Tank"]
+visible = false
+z_index = 5
+offset_left = -73.0
+offset_top = -87.0
+offset_right = 73.0
+offset_bottom = -65.0
+theme_override_styles/background = SubResource("StyleBoxFlat_g2xxk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1wskv")
+value = 100.0
+show_percentage = false
+
+[connection signal="area_entered" from="Plane" to="Plane" method="_on_area_entered"]
+[connection signal="area_entered" from="Strong Plane" to="Strong Plane" method="_on_area_entered"]
+[connection signal="area_entered" from="Tank" to="Tank" method="_on_area_entered"]
+[connection signal="area_entered" from="Strong Tank" to="Strong Tank" method="_on_area_entered"]

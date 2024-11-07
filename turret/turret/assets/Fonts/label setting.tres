@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cadtaiwa2eo80"]
+
+[ext_resource type="FontFile" uid="uid://b7jvr41u6swsj" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="1_gdn80"]
+
+[resource]
+font = ExtResource("1_gdn80")
+font_size = 31
