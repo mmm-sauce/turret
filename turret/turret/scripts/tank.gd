@@ -123,5 +123,5 @@ func fire_bullet():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name == "Bullet" && area.get_parent().trueParent == "cannon":
-		health -= get_parent().get_parent().get_node("cannon").damage
+		health -= get_parent().get_node("cannon").damage
 		$HealthBar.visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cu6i4ku1ruqin"]
+[gd_scene load_steps=15 format=3 uid="uid://cu6i4ku1ruqin"]
 
 [ext_resource type="Script" path="res://scripts/upgrades.gd" id="1_gagf1"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_e187h"]
@@ -18,8 +18,8 @@ gradient = SubResource("Gradient_p5gs3")
 width = 1281
 height = 1281
 fill = 1
-fill_from = Vector2(0.437086, 0.304636)
-fill_to = Vector2(0.649007, 0.708609)
+fill_from = Vector2(0.426605, 0.357798)
+fill_to = Vector2(0.715596, 0.834862)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2c21c"]
 font = ExtResource("5_xk3xb")
@@ -28,6 +28,14 @@ font_size = 38
 [sub_resource type="LabelSettings" id="LabelSettings_egs88"]
 font = ExtResource("5_xk3xb")
 font_size = 9
+
+[sub_resource type="LabelSettings" id="LabelSettings_2kd2q"]
+font = ExtResource("5_xk3xb")
+font_size = 51
+
+[sub_resource type="LabelSettings" id="LabelSettings_xm7ek"]
+font = ExtResource("5_xk3xb")
+font_size = 47
 
 [node name="UI" type="Node2D"]
 process_mode = 3
@@ -83,10 +91,33 @@ texture_normal = ExtResource("4_yukm8")
 clip_contents = true
 offset_left = 32.0
 offset_top = 229.0
-offset_right = 454.0
+offset_right = 575.0
 offset_bottom = 702.0
 theme_override_constants/h_separation = 15
 columns = 2
+
+[node name="Spacer3" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = SubResource("LabelSettings_egs88")
+horizontal_alignment = 1
+
+[node name="Spacer10" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = SubResource("LabelSettings_egs88")
+horizontal_alignment = 1
+
+[node name="Spacer11" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = SubResource("LabelSettings_egs88")
+horizontal_alignment = 1
+
+[node name="PausedText" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_2kd2q")
 
 [node name="Spacer" type="Label" parent="Upgrades"]
 layout_mode = 2
@@ -97,7 +128,7 @@ horizontal_alignment = 1
 [node name="Spacer2" type="Label" parent="Upgrades"]
 layout_mode = 2
 text = "  "
-label_settings = SubResource("LabelSettings_egs88")
+label_settings = SubResource("LabelSettings_xm7ek")
 horizontal_alignment = 1
 
 [node name="TurnSpeed" type="TextureButton" parent="Upgrades"]
@@ -106,8 +137,12 @@ texture_normal = ExtResource("4_rqlod")
 stretch_mode = 3
 flip_v = true
 
-[node name="tsCost" type="Label" parent="Upgrades"]
+[node name="tsCost" type="Label" parent="Upgrades/TurnSpeed"]
 layout_mode = 2
+offset_left = 79.0
+offset_top = 14.0
+offset_right = 529.0
+offset_bottom = 50.0
 text = "turn Speed - 10 coins"
 label_settings = ExtResource("3_pnyjo")
 
@@ -123,23 +158,39 @@ text = "  "
 label_settings = ExtResource("3_pnyjo")
 horizontal_alignment = 1
 
-[node name="ShotCD" type="TextureButton" parent="Upgrades"]
-layout_mode = 2
-texture_normal = ExtResource("5_65vr0")
-stretch_mode = 3
-
-[node name="cdCost" type="Label" parent="Upgrades"]
-layout_mode = 2
-text = "Shot cooldown - 10 coins"
-label_settings = ExtResource("3_pnyjo")
-
 [node name="Spacer6" type="Label" parent="Upgrades"]
 layout_mode = 2
 text = "  "
 label_settings = ExtResource("3_pnyjo")
 horizontal_alignment = 1
 
+[node name="ShotCD" type="TextureButton" parent="Upgrades"]
+layout_mode = 2
+texture_normal = ExtResource("5_65vr0")
+stretch_mode = 3
+
+[node name="cdCost" type="Label" parent="Upgrades/ShotCD"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 14.0
+offset_right = 529.0
+offset_bottom = 50.0
+text = "Shot cooldown - 10 coins"
+label_settings = ExtResource("3_pnyjo")
+
 [node name="Spacer7" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = ExtResource("3_pnyjo")
+horizontal_alignment = 1
+
+[node name="Spacer8" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = ExtResource("3_pnyjo")
+horizontal_alignment = 1
+
+[node name="Spacer9" type="Label" parent="Upgrades"]
 layout_mode = 2
 text = "  "
 label_settings = ExtResource("3_pnyjo")
@@ -150,8 +201,12 @@ layout_mode = 2
 texture_normal = ExtResource("6_eadr4")
 stretch_mode = 3
 
-[node name="bsCost" type="Label" parent="Upgrades"]
+[node name="bsCost" type="Label" parent="Upgrades/BurstShots"]
 layout_mode = 2
+offset_left = 79.0
+offset_top = 14.0
+offset_right = 477.0
+offset_bottom = 50.0
 text = "burst shots - 10 coins
 "
 label_settings = ExtResource("3_pnyjo")

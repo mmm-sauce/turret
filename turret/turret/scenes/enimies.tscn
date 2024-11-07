@@ -65,6 +65,7 @@ size = Vector2(100, 68)
 script = ExtResource("1_dyyls")
 
 [node name="Plane" type="Area2D" parent="."]
+visible = false
 z_index = 2
 script = ExtResource("2_eq110")
 bullet_scene = ExtResource("3_y7eol")

@@ -22,6 +22,7 @@ var level = 0
 const RECT_WIDTH: float = 1080	# Width of the spawn area
 const RECT_HEIGHT: float = 1920	# Height of the spawn area
 
+
 # Hanldes enemy spawning logic: 0 for plane, 1 for strong plane 2 for tank, 3 for strong tank
 var rng = RandomNumberGenerator.new()
 var currentEnimies = [0,0,0,0]
@@ -56,12 +57,17 @@ func determine_spawn():
 	difficultyDelta = maxDifficulty
 	
 	for i in currentEnimies:
+		print(currentEnimies)
+		print(i)
 		difficultyDelta -= enemyDifficulty[i] * currentEnimies[i]
 	
 	if difficultyDelta > 0:
 		var toSpawn = [0,1,2,3][rng.rand_weighted(spawningChance)]
-		if enemyDifficulty[toSpawn] > difficultyDelta:
+		
+		
+		if enemyDifficulty[toSpawn] < difficultyDelta:
 			_spawn_enemy(toSpawn)
+			
 
 func _spawn_enemy(toSpawn) -> void:
 	if not enemySpawning:
@@ -74,7 +80,8 @@ func _spawn_enemy(toSpawn) -> void:
 				# Determine a random spawn position on the border
 				var spawn_position = get_random_border_position()
 				
-				print(enemy.name)
+				currentEnimies[toSpawn] += 1
+				
 				
 				enemy.toSpawn = toSpawn
 				
