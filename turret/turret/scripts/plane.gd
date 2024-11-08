@@ -38,7 +38,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 		
 	# Stop when dead
-	if $Plane.visible:
+	if visible && $Plane.visible:
 		
 		# Death hanlding
 		if $HealthBar.value < 0.001:
@@ -70,9 +70,9 @@ func plane_explode():
 	$Explosion.visible = true
 	$Explosion.play("default")
 	if name == "Strong Plane":
-		get_parent().get_node("Spawner").currentEnimies[2]-=1
+		get_parent().get_parent().get_node("Spawner").currentEnimies[2]-=1
 	else:
-		get_parent().get_node("Spawner").currentEnimies[1]-=1
+		get_parent().get_parent().get_node("Spawner").currentEnimies[1]-=1
 	await get_tree().create_timer(.33).timeout
 	queue_free()
 
@@ -121,5 +121,6 @@ func fire_bullet():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name == "Bullet" && area.get_parent().trueParent == "cannon":
-		health -= get_parent().get_node("cannon").damage
+		health -= get_parent().get_parent().get_node("cannon").damage
 		$HealthBar.visible = true
+		

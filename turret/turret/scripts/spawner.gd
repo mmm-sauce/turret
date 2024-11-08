@@ -56,7 +56,7 @@ func determine_spawn():
 	
 	difficultyDelta = maxDifficulty
 	
-	for i in currentEnimies:
+	for i in currentEnimies.size():
 		print(currentEnimies)
 		print(i)
 		difficultyDelta -= enemyDifficulty[i] * currentEnimies[i]
@@ -78,18 +78,11 @@ func _spawn_enemy(toSpawn) -> void:
 				var enemy = enemyScene.instantiate()
 				
 				# Determine a random spawn position on the border
-				var spawn_position = get_random_border_position()
 				
 				currentEnimies[toSpawn] += 1
 				
 				
 				enemy.toSpawn = toSpawn
-				
-				# Set the enemy's global position
-				enemy.global_position = spawn_position
-				
-				# Optional: Set the enemy's rotation to face the center (based on game design)
-				enemy.rotation = (Vector2.ZERO - spawn_position).angle()
 				
 				# Add the enemy to the scene
 				get_parent().add_child(enemy)

@@ -38,7 +38,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 		
 	# Stop when dead
-	if $Body.visible:
+	if visible && $Body.visible:
 		
 		# Death hanlding
 		if $HealthBar.value < 0.001:
@@ -71,9 +71,9 @@ func plane_explode():
 	$Explosion.play("default")
 	
 	if name == "Strong Tank":
-		get_parent().currentEnimies[4]-=1
+		get_parent().get_parent().get_node("Spawner").currentEnimies[4]-=1
 	else:
-		get_parent().currentEnimies[3]-=1
+		get_parent().get_parent().get_node("Spawner").currentEnimies[3]-=1
 		
 	await get_tree().create_timer(.33).timeout
 	queue_free()
@@ -102,7 +102,7 @@ func rotate_towards_cannon(delta):
 	rotation += sign(angleDiff) * min(abs(angleDiff), turnSpeed * delta)
 	
 	# Update shadow position
-	$Turret.global_position = $Body.global_position + Vector2(0, 20)
+	$Turret.global_position = $Body.global_position
 	
 	return angleDiff
 
@@ -123,5 +123,6 @@ func fire_bullet():
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.name == "Bullet" && area.get_parent().trueParent == "cannon":
-		health -= get_parent().get_node("cannon").damage
+		print(name + ": " + get_parent().name)
+		health -= get_parent().get_parent().get_node("cannon").damage
 		$HealthBar.visible = true
