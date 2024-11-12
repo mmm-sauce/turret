@@ -25,8 +25,8 @@ func _ready() -> void:
 	# Initialize enemy properties based on enemy_type
 	match enemy_type:
 		0:  # Plane
-			health = 100
-			max_health = 100
+			health = 50
+			max_health = 50
 			damage = 10
 			speed = 300.0
 			shot_timer = .3
