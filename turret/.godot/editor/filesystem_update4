@@ -1,0 +1,13 @@
+res://scenes/level.tscn
+res://assets/Fonts/label setting.tres
+res://scripts/spawner.gd
+res://scenes/scoreboard.tscn
+res://scenes/bullet.tscn
+res://scenes/score.tscn
+res://scenes/label.tscn
+res://scenes/start.tscn
+res://scenes/enemies.tscn
+res://scenes/heal.tscn
+res://scenes/main.tscn
+res://scenes/label.gd
+res://start.gd

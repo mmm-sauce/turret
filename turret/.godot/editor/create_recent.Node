@@ -1,0 +1,13 @@
+Label
+Button
+CanvasLayer
+VBoxContainer
+Camera2D
+Timer
+Node2D
+Control
+TouchScreenButton
+CollisionShape2D
+Sprite2D
+Area2D
+CharacterBody2D
