@@ -18,6 +18,7 @@ func _process(delta: float) -> void:
 
 func heal_collect():
 	$Sprite2D.visible = false
+	$healsfx.play()
 	$Sprite2D2.visible = false
 	if get_parent().get_node("cannon").health < get_parent().get_node("cannon").maxHealth:
 		get_parent().get_node("cannon").health += healAmount

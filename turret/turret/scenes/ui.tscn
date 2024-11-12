@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cu6i4ku1ruqin"]
+[gd_scene load_steps=19 format=3 uid="uid://cu6i4ku1ruqin"]
 
 [ext_resource type="Script" path="res://scripts/upgrades.gd" id="1_gagf1"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_e187h"]
@@ -8,6 +8,9 @@
 [ext_resource type="FontFile" uid="uid://b7jvr41u6swsj" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="5_xk3xb"]
 [ext_resource type="Texture2D" uid="uid://buttx5chaswa6" path="res://assets/Double/resize_c_diagonal_mirror.png" id="6_eadr4"]
 [ext_resource type="Texture2D" uid="uid://dfggqnwvmep2e" path="res://assets/Double/tool_sword_a.png" id="7_x6m71"]
+[ext_resource type="AudioStream" uid="uid://dx4c2j2hv2c84" path="res://audio/sfx/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.wav" id="9_bq5nc"]
+[ext_resource type="AudioStream" uid="uid://brgk2uwh7v11f" path="res://audio/sfx/JDSherbert - Ultimate UI SFX Pack - Popup Close - 1.wav" id="10_8ld66"]
+[ext_resource type="AudioStream" uid="uid://boa1mgcsn1p3k" path="res://audio/sfx/JDSherbert - Ultimate UI SFX Pack - Select - 1.wav" id="11_y4qoj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pbuw8"]
 font = ExtResource("5_xk3xb")
@@ -266,6 +269,15 @@ mouse_filter = 1
 text = "burst shots - 10 coins
 "
 label_settings = ExtResource("3_pnyjo")
+
+[node name="popupopen" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_bq5nc")
+
+[node name="popupclose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_8ld66")
+
+[node name="popupselect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_y4qoj")
 
 [connection signal="pressed" from="Popup" to="." method="_on_popup_pressed"]
 [connection signal="pressed" from="Upgrades/TurnSpeed" to="." method="_on_turn_speed_pressed"]
