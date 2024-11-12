@@ -1,0 +1,10 @@
+res://assets/Fonts/label setting.tres::ad27e2b948fb05ef610e6e87432f53ef::1730245698::res://.godot/exported/133200997/export-6642d258595448eacd196d29aeb95a28-label setting.res
+res://scenes/bullet.tscn::87380311a4288f6541caca249332ada5::1730261271::res://.godot/exported/133200997/export-6d8e6ff1e6f20a36e0402d27c623c86c-bullet.scn
+res://scenes/cannon.tscn::58742166ceb6b6bf2b9e6d2f870a21d6::1730261272::res://.godot/exported/133200997/export-f1946e0ee9b7b5dca216e1f175b52e74-cannon.scn
+res://scenes/enemies.tscn::ba49f723498053a8adb93ad8e9d55104::1730261271::res://.godot/exported/133200997/export-727a563b9499c0d7947a6c86e917ef92-enemies.scn
+res://scenes/label.tscn::db05b20c1e2d4313018328b5e63e0276::1730256439::res://.godot/exported/133200997/export-fec31998e994c29f0d02d04c4b47eab9-label.scn
+res://scenes/level.tscn::dacbbda95a762147a92c797f4ebe18d7::1730261271::res://.godot/exported/133200997/export-a0631f9feb269b9ee464fe0e4794e617-level.scn
+res://scenes/main.tscn::0e7a83876ea3fc114ba62f3b92c93d49::1730261322::res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
+res://scenes/score.tscn::1ac71a14cb533905ef465bc8b59bd79f::1730256440::res://.godot/exported/133200997/export-07cfc82c14422843af846b5655b3d20d-score.scn
+res://scenes/scoreboard.tscn::f599488b24a97761bdd4ee31a52faabb::1730256900::res://.godot/exported/133200997/export-212e930167accc8767e54fcf7c0e1bfb-scoreboard.scn
+res://scenes/spawner.tscn::d6a640cca082a9ab69b9c765151cbf70::1730261271::res://.godot/exported/133200997/export-c003b31af2e0ca5030eda5db94aeddff-spawner.scn

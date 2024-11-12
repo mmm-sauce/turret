@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://2v0b1goyfxnv"]
+[gd_scene load_steps=20 format=3 uid="uid://2v0b1goyfxnv"]
 
 [ext_resource type="Script" path="res://scripts/enimies.gd" id="1_dyyls"]
 [ext_resource type="Script" path="res://scripts/plane.gd" id="2_eq110"]
@@ -8,6 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://b2soequfwjf68" path="res://audio/sfx/Explosion.wav" id="6_1q86i"]
 [ext_resource type="Texture2D" uid="uid://jkevj5owxlr3" path="res://assets/allSprites_retina.png" id="7_axj26"]
 [ext_resource type="Script" path="res://scripts/tank.gd" id="8_maxja"]
+[ext_resource type="AudioStream" uid="uid://cvp4l5fxjix6f" path="res://audio/sfx/canon_fire.ogg" id="8_u2rcg"]
+[ext_resource type="AudioStream" uid="uid://dhd8mido2ldrg" path="res://audio/sfx/explodemini.wav" id="10_h6n40"]
+[ext_resource type="AudioStream" uid="uid://p82hcgp27vg1" path="res://audio/sfx/heavy_canon.ogg" id="11_7j4gj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q0611"]
 radius = 57.0
@@ -65,7 +68,7 @@ size = Vector2(100, 68)
 script = ExtResource("1_dyyls")
 
 [node name="Plane" type="Area2D" parent="."]
-z_index = 2
+z_index = 5
 script = ExtResource("2_eq110")
 bullet_scene = ExtResource("3_y7eol")
 
@@ -112,8 +115,7 @@ value = 100.0
 show_percentage = false
 
 [node name="Strong Plane" type="Area2D" parent="."]
-visible = false
-z_index = 2
+z_index = 5
 script = ExtResource("2_eq110")
 bullet_scene = ExtResource("3_y7eol")
 
@@ -124,7 +126,7 @@ region_enabled = true
 region_rect = Rect2(2304, 1408, 128, 128)
 
 [node name="planeshoot" type="AudioStreamPlayer2D" parent="Strong Plane/Plane"]
-stream = ExtResource("5_or0kn")
+stream = ExtResource("8_u2rcg")
 
 [node name="planeexplode" type="AudioStreamPlayer2D" parent="Strong Plane/Plane"]
 stream = ExtResource("6_1q86i")
@@ -160,7 +162,6 @@ value = 100.0
 show_percentage = false
 
 [node name="Tank" type="Area2D" parent="."]
-visible = false
 z_index = 2
 script = ExtResource("8_maxja")
 bullet_scene = ExtResource("3_y7eol")
@@ -172,7 +173,7 @@ region_enabled = true
 region_rect = Rect2(1921, 1409, 128, 128)
 
 [node name="planeshoot" type="AudioStreamPlayer2D" parent="Tank/Body"]
-stream = ExtResource("5_or0kn")
+stream = ExtResource("10_h6n40")
 
 [node name="planeexplode" type="AudioStreamPlayer2D" parent="Tank/Body"]
 stream = ExtResource("6_1q86i")
@@ -209,7 +210,6 @@ value = 100.0
 show_percentage = false
 
 [node name="Strong Tank" type="Area2D" parent="."]
-visible = false
 z_index = 2
 script = ExtResource("8_maxja")
 bullet_scene = ExtResource("3_y7eol")
@@ -221,7 +221,7 @@ region_enabled = true
 region_rect = Rect2(2049, 1409, 128, 128)
 
 [node name="planeshoot" type="AudioStreamPlayer2D" parent="Strong Tank/Body"]
-stream = ExtResource("5_or0kn")
+stream = ExtResource("11_7j4gj")
 
 [node name="planeexplode" type="AudioStreamPlayer2D" parent="Strong Tank/Body"]
 stream = ExtResource("6_1q86i")

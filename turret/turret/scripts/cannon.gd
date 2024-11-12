@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 # Cannon Properties
 @export var bullet_scene: PackedScene  # Reference to the bullet scene
-var turnSpeed = 5  # Cannon rotation speed (*UPGRADEABLE!!!!)
+var turnSpeed = 4  # Cannon rotation speed (*UPGRADEABLE!!!!)
 var barrel = 1  # Alternates between barrels for firing
-var maxHealth = 500 # Health
+var maxHealth = 1 # Health
 var isHeal = false # Is currently healing?
 var health = maxHealth
 var damage = 25
@@ -15,6 +15,7 @@ var shoot = false  # Indicates if the cannon should shoot
 var clickPos = Vector2.ZERO  # Position of the last click
 var clickAngle = 0  # Angle to rotate towards
 var angleDiff = 0 # Difference between angles
+var shooting = false
 
 # Timing
 var shotTimer = 0.0  # Tracks cooldown between bursts
@@ -60,10 +61,14 @@ func _physics_process(delta: float) -> void:
 	# Handles the shooting logic
 	if shoot == true and abs(angleDiff) < 0.01:
 		shoot = false
-		shotTimer = shotCD
-		for i in range(shots):
-			await get_tree().create_timer(0.1).timeout
-			fire_bullet()
+		if not shooting:
+			shooting = true
+			shotTimer = shotCD
+			for i in range(shots):
+				await get_tree().create_timer(0.1).timeout
+				
+				fire_bullet()
+			shooting = false
 			# $AudioStreamPlayer2D.play()
 
 	handle_animation()
@@ -101,6 +106,8 @@ func fire_bullet():
 	var bullet = bullet_scene.instantiate()
 	
 	bullet.trueParent = "cannon"
+	
+	bullet.damage = damage
 	
 	# Shooting bullet out of alternating barrels
 	if barrel == 1:

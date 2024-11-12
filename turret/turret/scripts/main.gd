@@ -1,3 +1,3 @@
 extends Node2D
 
-var coins = 10
+var coins = 0
