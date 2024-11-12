@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene  # Reference to the bullet scene
 var turnSpeed = 4  # Cannon rotation speed (*UPGRADEABLE!!!!)
 var barrel = 1  # Alternates between barrels for firing
-var maxHealth = 1 # Health
+var maxHealth = 500 # Health
 var isHeal = false # Is currently healing?
 var health = maxHealth
 var damage = 25
