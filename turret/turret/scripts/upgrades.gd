@@ -6,6 +6,7 @@ extends Node2D
 var tsCost = 10
 var cdCost = 10
 var bsCost = 10
+var hpCost = 10
 
 var speed = .2
 var Vseperation = -100
@@ -29,6 +30,7 @@ func _process(delta: float) -> void:
 	$Upgrades/TurnSpeed/tsCost.text = "turn speed (" + str(cannon.turnSpeed) + ") - " + str(tsCost)+" coins"
 	$Upgrades/Damage/dmgCost.text = "Damage (" + str(cannon.damage) + ") - " + str(cdCost)+" coins"
 	$Upgrades/BurstShots/bsCost.text = "more shots (" + str(cannon.shots) + ") - " + str(bsCost)+" coins"
+	$Upgrades/Health/hpCost.text = "Health (" + str(cannon.health) + ") - " + str(hpCost)+" coins"
 	
 	$Level.text = "Level - "+str(spawner.level)
 	
@@ -39,10 +41,12 @@ func reset():
 	cannon.turnSpeed = 4
 	cannon.damage = 25
 	cannon.shots = 1
+	cannon.health = 25
 	
 	tsCost = 10
 	cdCost = 10
 	bsCost = 10
+	hpCost = 10
 
 func _on_turn_speed_pressed() -> void:
 	if get_parent().coins >= tsCost:
@@ -63,6 +67,14 @@ func _on_burst_shots_pressed() -> void:
 		cannon.shots += 1
 		get_parent().coins -= bsCost
 		bsCost += 5
+
+
+func _on_health_pressed() -> void:
+	if get_parent().coins >= hpCost:
+		cannon.health += 250
+		get_parent().coins -= hpCost
+		hpCost += 5
+
 
 func _on_popup_pressed() -> void:
 	if not popping:

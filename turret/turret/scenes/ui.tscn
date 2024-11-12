@@ -22,8 +22,8 @@ gradient = SubResource("Gradient_p5gs3")
 width = 1281
 height = 1281
 fill = 1
-fill_from = Vector2(0.426605, 0.357798)
-fill_to = Vector2(0.715596, 0.834862)
+fill_from = Vector2(0.444954, 0.389908)
+fill_to = Vector2(0.779817, 0.889908)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2c21c"]
 font = ExtResource("5_xk3xb")
@@ -232,7 +232,43 @@ text = "burst shots - 10 coins
 "
 label_settings = ExtResource("3_pnyjo")
 
+[node name="Spacer12" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = ExtResource("3_pnyjo")
+horizontal_alignment = 1
+
+[node name="Spacer13" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = ExtResource("3_pnyjo")
+horizontal_alignment = 1
+
+[node name="Spacer14" type="Label" parent="Upgrades"]
+layout_mode = 2
+text = "  "
+label_settings = ExtResource("3_pnyjo")
+horizontal_alignment = 1
+
+[node name="Health" type="TextureButton" parent="Upgrades"]
+z_index = 2
+layout_mode = 2
+texture_normal = ExtResource("6_eadr4")
+stretch_mode = 3
+
+[node name="hpCost" type="Label" parent="Upgrades/Health"]
+layout_mode = 2
+offset_left = 79.0
+offset_top = 14.0
+offset_right = 477.0
+offset_bottom = 50.0
+mouse_filter = 1
+text = "burst shots - 10 coins
+"
+label_settings = ExtResource("3_pnyjo")
+
 [connection signal="pressed" from="Popup" to="." method="_on_popup_pressed"]
 [connection signal="pressed" from="Upgrades/TurnSpeed" to="." method="_on_turn_speed_pressed"]
 [connection signal="pressed" from="Upgrades/Damage" to="." method="_on_shot_cd_pressed"]
 [connection signal="pressed" from="Upgrades/BurstShots" to="." method="_on_burst_shots_pressed"]
+[connection signal="pressed" from="Upgrades/Health" to="." method="_on_health_pressed"]

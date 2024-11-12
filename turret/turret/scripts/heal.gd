@@ -1,15 +1,12 @@
 extends Area2D
 
-var healAmount = 50
+var healAmount = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(1,10):
 		scale = Vector2(EasingFunctions.ease_in_out_cubic(0, 1, float(i)/10), EasingFunctions.ease_in_out_cubic(0, 1, float(i)/10))
-		
-		
 		await get_tree().create_timer(0.05).timeout
-		
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
