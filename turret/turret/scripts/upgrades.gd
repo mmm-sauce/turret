@@ -35,6 +35,15 @@ func _process(delta: float) -> void:
 	$Coins.text = str(get_parent().coins)
 	
 
+func reset():
+	cannon.turnSpeed = 4
+	cannon.damage = 25
+	cannon.shots = 1
+	
+	tsCost = 10
+	cdCost = 10
+	bsCost = 10
+
 func _on_turn_speed_pressed() -> void:
 	if get_parent().coins >= tsCost:
 		cannon.turnSpeed += 2

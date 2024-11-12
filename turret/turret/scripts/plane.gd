@@ -27,15 +27,15 @@ func _ready() -> void:
 		0:  # Plane
 			health = 100
 			max_health = 100
-			damage = 15
+			damage = 10
 			speed = 300.0
-			shot_timer = 1.0
+			shot_timer = .3
 		1:  # Strong Plane
 			health = 150
 			max_health = 150
 			damage = 40
 			speed = 200.0
-			shot_timer = 1.5
+			shot_timer = 1
 		_:
 			print("Invalid enemy_type for Plane:", enemy_type)
 			queue_free()

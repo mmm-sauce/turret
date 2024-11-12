@@ -27,6 +27,8 @@ var enemy_names: Array = ["Plane", "Strong Plane", "Tank", "Strong Tank"]
 var current_heals: int = 0
 var baseHealAmount = 50
 
+var spawned = [] # Holds all spawned items
+
 var rng = RandomNumberGenerator.new()
 
 func _ready():
@@ -126,6 +128,8 @@ func _spawn_enemy(enemy_type: int):
 	enemy_node.global_position = get_random_border_position()
 	enemy_container.queue_free()
 	
+	spawned.append(enemy_node)
+	
 	print("Enemy spawned and added to scene.")
 
 func get_random_border_position() -> Vector2:
@@ -160,15 +164,11 @@ func reset_game() -> void:
 	current_enemies = [0, 0, 0, 0]
 	current_heals = 0
 	
-	# Remove existing enemies
-	for child in get_parent().get_children():
-		if child.name in enemy_names:
-			child.queue_free()
+	# Remove existing entities
+	for node in spawned:
+		if is_instance_valid(node):
+			node.queue_free()
 	
-	# Remove existing heals
-	for child in get_parent().get_children():
-		if child.name == "Heal":
-			child.queue_free()
 	
 	print("Game has been reset to level 0.")
 
@@ -180,3 +180,4 @@ func _spawn_heal():
 		rng.randf_range(50.0, SPAWN_AREA_HEIGHT - 50.0)
 	)
 	get_parent().add_child(heal)
+	spawned.append(heal)

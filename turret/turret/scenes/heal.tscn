@@ -42,7 +42,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mkfsd"]
 size = Vector2(106, 69.5)
 
-[node name="Area2D" type="Area2D"]
+[node name="Heal" type="Area2D"]
 z_index = 2
 script = ExtResource("1_pyus4")
 

@@ -159,7 +159,7 @@ offset_left = 79.0
 offset_top = 14.0
 offset_right = 529.0
 offset_bottom = 50.0
-mouse_filter = 0
+mouse_filter = 1
 text = "turn Speed - 10 coins"
 label_settings = ExtResource("3_pnyjo")
 
@@ -227,6 +227,7 @@ offset_left = 79.0
 offset_top = 14.0
 offset_right = 477.0
 offset_bottom = 50.0
+mouse_filter = 1
 text = "burst shots - 10 coins
 "
 label_settings = ExtResource("3_pnyjo")
