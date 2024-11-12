@@ -78,15 +78,18 @@ func _process(delta: float) -> void:
 		enemy_spawn_timer = spawn_interval
 		_attempt_spawn_enemy()
 	
-
+	print(heal_spawn_timer)
 	# Attempt to spawn a heal
 	if heal_spawn_timer <= 0.0:
 		var randA = randf_range(3.0, 4.0)
-		var randB = randf_range(4, 20)
+		var randB = randf_range(4, 20/(current_heals+1))
 		print(randA)
 		print(randB)
+		print(current_heals)
+		heal_spawn_timer = 2.5
 		if randA * (current_heals^2 + 1) < randB:
-			heal_spawn_timer = 2.5
+			print("SPAWN")
+			print("This:",randA * (current_heals^2 + 1))
 			current_heals += 1
 			_spawn_heal()
 
