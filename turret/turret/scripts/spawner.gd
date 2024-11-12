@@ -32,9 +32,10 @@ var spawned = [] # Holds all spawned items
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	_spawn_enemy(0)
 	rng.randomize()
 	enemy_spawn_timer = spawn_interval
-	heal_spawn_timer = rng.randf_range(5.0, 15.0)
+	heal_spawn_timer = rng.randf_range(5.0, 7.0)
 
 func _process(delta: float) -> void:
 	for i in spawn_chances.size():
@@ -42,7 +43,7 @@ func _process(delta: float) -> void:
 			if level < 1:
 				true_spawn_chances[i] = 0
 			else:
-				true_spawn_chances[i] = spawn_chances[i] / (level / 1.5)
+				true_spawn_chances[i] = spawn_chances[i] / (level)
 		elif i == 2:
 			if level < 3:
 				true_spawn_chances[i] = 0
@@ -54,8 +55,6 @@ func _process(delta: float) -> void:
 			else:
 				true_spawn_chances[i] = spawn_chances[i] / level
 				
-	print(spawn_chances)
-	print(true_spawn_chances)
 	
 	if get_tree().paused:
 		return
@@ -78,12 +77,18 @@ func _process(delta: float) -> void:
 	if enemy_spawn_timer <= 0.0:
 		enemy_spawn_timer = spawn_interval
 		_attempt_spawn_enemy()
+	
 
 	# Attempt to spawn a heal
 	if heal_spawn_timer <= 0.0:
-		current_heals += 1
-		heal_spawn_timer = randf_range(5.0, 10.0) * (current_heals^2 + 1)
-		_spawn_heal()
+		var randA = randf_range(3.0, 4.0)
+		var randB = randf_range(4, 20)
+		print(randA)
+		print(randB)
+		if randA * (current_heals^2 + 1) < randB:
+			heal_spawn_timer = 2.5
+			current_heals += 1
+			_spawn_heal()
 
 
 func _attempt_spawn_enemy():

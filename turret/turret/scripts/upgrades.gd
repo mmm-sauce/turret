@@ -3,10 +3,10 @@ extends Node2D
 @export var cannon = CharacterBody2D
 @export var spawner = Node2D
 
-var tsCost = 10
-var cdCost = 10
-var bsCost = 10
-var hpCost = 10
+var tsCost = 5
+var cdCost = 5
+var bsCost = 5
+var hpCost = 5
 
 var speed = .2
 var Vseperation = -100
@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	$Upgrades/TurnSpeed/tsCost.text = "turn speed (" + str(cannon.turnSpeed) + ") - " + str(tsCost)+" coins"
 	$Upgrades/Damage/dmgCost.text = "Damage (" + str(cannon.damage) + ") - " + str(cdCost)+" coins"
 	$Upgrades/BurstShots/bsCost.text = "more shots (" + str(cannon.shots) + ") - " + str(bsCost)+" coins"
-	$Upgrades/Health/hpCost.text = "Health (" + str(cannon.health) + ") - " + str(hpCost)+" coins"
+	$Upgrades/Health/hpCost.text = "Max health (" + str(cannon.maxHealth) + ") - " + str(hpCost)+" coins"
 	
 	$Level.text = "Level - "+str(spawner.level)
 	
@@ -71,7 +71,8 @@ func _on_burst_shots_pressed() -> void:
 
 func _on_health_pressed() -> void:
 	if get_parent().coins >= hpCost:
-		cannon.health += 250
+		cannon.maxHealth += 100
+		cannon.health += 100
 		get_parent().coins -= hpCost
 		hpCost += 5
 

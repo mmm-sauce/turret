@@ -22,7 +22,7 @@ gradient = SubResource("Gradient_p5gs3")
 width = 1281
 height = 1281
 fill = 1
-fill_from = Vector2(0.444954, 0.389908)
+fill_from = Vector2(0.454128, 0.37156)
 fill_to = Vector2(0.779817, 0.889908)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2c21c"]
