@@ -2,6 +2,7 @@ extends Node2D
 
 var trueParent
 var speed = 1500  # Speed of the bullet in pixels per second
+var damage = 0
 
 func _physics_process(delta):
 	if $BulletSprite.visible:
@@ -20,7 +21,7 @@ func _on_bullet_area_entered(area: Area2D) -> void:
 
 func _on_bullet_body_entered(body: Node2D) -> void:
 	if trueParent == "enemy":
-		body.health -= 15
+		body.health -= damage
 		$BulletSprite.visible = false
 		$Shrapnel.visible = true
 		await get_tree().create_timer(0.05).timeout

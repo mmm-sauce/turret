@@ -11,22 +11,20 @@ const RECT_HEIGHT: float = 1920	# Height of the spawn area
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	
-	
-	$Plane.visible = false
-	$"Strong Plane".visible = false
-	$Tank.visible = false
-	$"Strong Tank".visible = false
-	
-	if toSpawn == 0:
-		$Plane.visible = true
-	elif toSpawn == 1:
-		$"Strong Plane".visible = true
-	elif toSpawn == 2:
-		$Tank.visible = true
-	elif toSpawn == 3:
-		$"Strong Tank".visible = true
-		
+	#$Plane.visible = false
+	#$"Strong Plane".visible = false
+	#$Tank.visible = false
+	#$"Strong Tank".visible = false
+	#
+	#if toSpawn == 0:
+		#$Plane.visible = true
+	#elif toSpawn == 1:
+		#$"Strong Plane".visible = true
+	#elif toSpawn == 2:
+		#$Tank.visible = true
+	#elif toSpawn == 3:
+		#$"Strong Tank".visible = true
+		#
 		
 	var spawn_position = get_random_border_position()
 	

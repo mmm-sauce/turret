@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var cannon = CharacterBody2D
+@export var spawner = Node2D
 
 var tsCost = 10
 var cdCost = 10
@@ -25,23 +26,25 @@ func _process(delta: float) -> void:
 	$Sprite2D2.set_modulate(Color(1,1,1,(Vseperation+100)/100))
 	$Upgrades.add_theme_constant_override("v_separation", Vseperation)
 	
-	$Upgrades/TurnSpeed/tsCost.text = "turn speed - "+str(tsCost)+" coins"
-	$Upgrades/ShotCD/cdCost.text = "burst cooldown - "+str(cdCost)+" coins"
-	$Upgrades/BurstShots/bsCost.text = "more shots - "+str(bsCost)+" coins"
-	$Coins.text = str(get_parent().coins)
+	$Upgrades/TurnSpeed/tsCost.text = "turn speed (" + str(cannon.turnSpeed) + ") - " + str(tsCost)+" coins"
+	$Upgrades/Damage/dmgCost.text = "Damage (" + str(cannon.damage) + ") - " + str(cdCost)+" coins"
+	$Upgrades/BurstShots/bsCost.text = "more shots (" + str(cannon.shots) + ") - " + str(bsCost)+" coins"
 	
+	$Level.text = "Level - "+str(spawner.level)
+	
+	$Coins.text = str(get_parent().coins)
 	
 
 func _on_turn_speed_pressed() -> void:
 	if get_parent().coins >= tsCost:
-		cannon.turnSpeed += 1
+		cannon.turnSpeed += 2
 		get_parent().coins -= tsCost
 		tsCost += 5
 		
 
 func _on_shot_cd_pressed() -> void:
 	if get_parent().coins >= cdCost:
-		cannon.shotCD = cannon.shotCD*.8
+		cannon.damage = cannon.damage*1.4
 		get_parent().coins -= cdCost
 		cdCost += 5
 

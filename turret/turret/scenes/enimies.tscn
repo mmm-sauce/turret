@@ -68,8 +68,7 @@ size = Vector2(100, 68)
 script = ExtResource("1_dyyls")
 
 [node name="Plane" type="Area2D" parent="."]
-visible = false
-z_index = 2
+z_index = 5
 script = ExtResource("2_eq110")
 bullet_scene = ExtResource("3_y7eol")
 
@@ -116,8 +115,7 @@ value = 100.0
 show_percentage = false
 
 [node name="Strong Plane" type="Area2D" parent="."]
-visible = false
-z_index = 2
+z_index = 5
 script = ExtResource("2_eq110")
 bullet_scene = ExtResource("3_y7eol")
 
@@ -164,7 +162,6 @@ value = 100.0
 show_percentage = false
 
 [node name="Tank" type="Area2D" parent="."]
-visible = false
 z_index = 2
 script = ExtResource("8_maxja")
 bullet_scene = ExtResource("3_y7eol")
@@ -201,6 +198,7 @@ sprite_frames = SubResource("SpriteFrames_pbqhe")
 position = Vector2(90, -3)
 
 [node name="HealthBar" type="ProgressBar" parent="Tank"]
+visible = false
 z_index = 5
 offset_left = -73.0
 offset_top = -87.0
@@ -212,7 +210,6 @@ value = 100.0
 show_percentage = false
 
 [node name="Strong Tank" type="Area2D" parent="."]
-visible = false
 z_index = 2
 script = ExtResource("8_maxja")
 bullet_scene = ExtResource("3_y7eol")

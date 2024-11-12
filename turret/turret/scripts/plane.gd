@@ -1,126 +1,123 @@
 extends Area2D
 
-# Bullet properties
-@export var bullet_scene: PackedScene  # Reference to the bullet scene
+# Exported Variables
+@export var bullet_scene: PackedScene    # Reference to the bullet scene
+@export var enemy_type: int = -1         # Enemy type index (set by spawner)
 
-# Firing control variables
-var is_firing = false
-var shotTimer = 1  # Time between shots
+# Constants
+const CANNON_POSITION = Vector2(540, 960)
 
-# Cannon properties
-var cannonPos = Vector2(540, 960)  # Position of the cannon
-var cannonAngle = 0  # Angle to rotate towards
+# Enemy Properties
+var health: int
+var max_health: int
+var damage: int
+var speed: float
+var shot_timer: float
+var is_firing: bool = false
+var has_reached_cannon: bool = false
 
-# Plane properties 
-var team = "enemy"
-var angleDiff = 0  # Difference between angles
-var turnSpeed = 1.5  # Speed of rotation
-var has_reached_cannon = false  # Indicates if the plane has reached the cannon
+# Internal Variables
+var cannon_angle: float = 0.0
+var angle_difference: float = 0.0
+var turn_speed: float = 1.5
 
-# Variables between strengths
-var health = 100
-var maxHealth = 100
-var strongHealth = 400
-var maxStrongHealth = 400
-
-var speed = 300
-var strongSpeed = 200
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if name == "Strong Plane":
-		health = strongHealth
-		maxHealth = maxStrongHealth
-		
+	# Initialize enemy properties based on enemy_type
+	match enemy_type:
+		0:  # Plane
+			health = 100
+			max_health = 100
+			damage = 15
+			speed = 300.0
+			shot_timer = 1.0
+		1:  # Strong Plane
+			health = 150
+			max_health = 150
+			damage = 40
+			speed = 200.0
+			shot_timer = 1.5
+		_:
+			print("Invalid enemy_type for Plane:", enemy_type)
+			queue_free()
+			return
+
+	# Initialize health bar
 	$HealthBar.value = health
-	$HealthBar.max_value = maxHealth
+	$HealthBar.max_value = max_health
+	print("Enemy initialized with type:", enemy_type)
 
 func _physics_process(delta: float) -> void:
-		
-	# Stop when dead
-	if visible && $Plane.visible:
-		
-		# Death hanlding
-		if $HealthBar.value < 0.001:
-			plane_explode()
-		
-		$HealthBar.global_position = $Plane.global_position - Vector2(73, 75)
-		$HealthBar.rotation = -rotation  # Keep the health bar upright
-		$HealthBar.value = health
-		
-		# Determine the angle to rotate towards
-		adjust_angle(delta)
+	if visible and $Plane.visible:
 
-		# Move forward in the direction the plane is facing
+		# Update health bar
+		$HealthBar.global_position = $Plane.global_position - Vector2(73, 75)
+		$HealthBar.rotation = -rotation
+		$HealthBar.value = health
+
+		# Handle death
+		if health <= 0:
+			_explode()
+			return
+
+		# Adjust angle towards the cannon
+		_adjust_angle(delta)
+
+		# Move forward
 		var direction = Vector2.RIGHT.rotated(rotation)
 		global_position += direction * speed * delta
-		
-		# Fire bullet when aligned with cannon and not already firing
-		if abs(angleDiff) < 0.001 and not is_firing and not has_reached_cannon and global_position.distance_to(cannonPos) < 500:
+
+		# Fire bullet when aligned with cannon
+		if abs(angle_difference) < 0.01 and not is_firing and not has_reached_cannon and global_position.distance_to(CANNON_POSITION) < 500.0:
 			is_firing = true
-			fire_bullet()
-			await get_tree().create_timer(shotTimer).timeout
+			_fire_bullet()
+			await get_tree().create_timer(shot_timer).timeout
 			is_firing = false
 
-func plane_explode():
+func _adjust_angle(delta: float) -> void:
+	var direction_to_cannon = (CANNON_POSITION - global_position).normalized()
+	cannon_angle = direction_to_cannon.angle()
+
+	if not has_reached_cannon and global_position.distance_to(CANNON_POSITION) < 50.0:
+		has_reached_cannon = true
+		angle_difference = 0.0
+		await get_tree().create_timer(2.0).timeout
+		rotation += randf_range(-0.1, 0.1)
+		has_reached_cannon = false
+	elif not has_reached_cannon:
+		_rotate_towards_cannon(delta)
+
+func _rotate_towards_cannon(delta: float) -> void:
+	angle_difference = cannon_angle - rotation
+	angle_difference = wrapf(angle_difference, -PI, PI)
+	rotation += sign(angle_difference) * min(abs(angle_difference), turn_speed * delta)
+	$Shadow.global_position = $Plane.global_position + Vector2(0, 20)
+
+func _fire_bullet() -> void:
+	var bullet = bullet_scene.instantiate()
+	$Plane/planeshoot.play()
+	bullet.global_position = $Marker2D.global_position
+	bullet.rotation = rotation
+	bullet.trueParent = "enemy"
+	bullet.damage = damage
+	get_parent().add_child(bullet)
+	print("Bullet fired by enemy type:", enemy_type)
+
+func _explode() -> void:
 	$Plane/planeexplode.play()
 	$Shadow.visible = false
 	$Plane.visible = false
-	get_parent().get_parent().coins += 2
 	$Explosion.visible = true
 	$Explosion.play("default")
-	if name == "Strong Plane":
-		get_parent().get_parent().get_node("Spawner").currentEnimies[2]-=1
-	else:
-		get_parent().get_parent().get_node("Spawner").currentEnimies[1]-=1
-	await get_tree().create_timer(.33).timeout
+
+	# Notify spawner about enemy destruction
+	var spawner = get_parent().get_node("Spawner")
+	spawner.on_enemy_destroyed(enemy_type)
+
+	await get_tree().create_timer(0.33).timeout
 	queue_free()
 
-func adjust_angle(delta):
-	var cannonDirection = (cannonPos - global_position).normalized()
-	cannonAngle = cannonDirection.angle()
-	
-	# Check if the plane has reached the cannon
-	if not has_reached_cannon and global_position.distance_to(cannonPos) < 50:
-		has_reached_cannon = true
-		angleDiff = 0
-		await get_tree().create_timer(2).timeout
-		rotation += randf_range(.1,-.1)
-		has_reached_cannon = false
-
-	elif not has_reached_cannon:
-		angleDiff = rotate_towards_cannon(delta)
-
-func rotate_towards_cannon(delta):
-	# Calculate angle difference and normalize it
-	var angleDiff = cannonAngle - rotation
-	angleDiff = wrapf(angleDiff, -PI, PI)
-	
-	# Rotate towards the target angle
-	rotation += sign(angleDiff) * min(abs(angleDiff), turnSpeed * delta)
-	
-	# Update shadow position
-	$Shadow.global_position = $Plane.global_position + Vector2(0, 20)
-	
-	return angleDiff
-
-func fire_bullet():
-	# Instance the bullet
-	var bullet = bullet_scene.instantiate()
-	$Plane/planeshoot.play()
-	
-	# Set bullet position and rotation
-	bullet.global_position = $Marker2D.global_position
-	bullet.rotation = rotation
-	
-	bullet.trueParent = "enemy"
-	# Add bullet to the scene
-	
-	get_parent().add_child(bullet)
-
-
 func _on_area_entered(area: Area2D) -> void:
-	if area.name == "Bullet" && area.get_parent().trueParent == "cannon":
-		health -= get_parent().get_parent().get_node("cannon").damage
+	if area.name == "Bullet" and area.get_parent().trueParent == "cannon":
+		health -= get_parent().get_node("cannon").damage
 		$HealthBar.visible = true
-		
+		print("Enemy hit by cannon. New health:", health)

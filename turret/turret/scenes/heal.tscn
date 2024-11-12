@@ -43,6 +43,7 @@ animations = [{
 size = Vector2(106, 69.5)
 
 [node name="Area2D" type="Area2D"]
+z_index = 2
 script = ExtResource("1_pyus4")
 
 [node name="Explosion" type="AnimatedSprite2D" parent="."]
