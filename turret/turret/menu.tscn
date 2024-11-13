@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw4c1cs1sf2e0"]
+
+[ext_resource type="FontFile" uid="uid://b7jvr41u6swsj" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="1_8gkwt"]
+[ext_resource type="Script" path="res://label.gd" id="2_brnuh"]
+[ext_resource type="Texture2D" uid="uid://ctgbren1jgoc4" path="res://assets/Background.png" id="3_yrbj2"]
+
+[node name="Menu" type="Label"]
+offset_left = 60.0
+offset_top = 29.0
+offset_right = 1033.0
+offset_bottom = 309.0
+theme_override_fonts/font = ExtResource("1_8gkwt")
+theme_override_font_sizes/font_size = 120
+text = "The Turret
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_brnuh")
+
+[node name="Start" type="Button" parent="."]
+top_level = true
+layout_mode = 0
+offset_left = 328.0
+offset_top = 708.0
+offset_right = 765.0
+offset_bottom = 854.0
+theme_override_fonts/font = ExtResource("1_8gkwt")
+theme_override_font_sizes/font_size = 70
+text = "Start"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 900.0
+offset_right = 708.0
+offset_bottom = 1046.0
+theme_override_fonts/font = ExtResource("1_8gkwt")
+theme_override_font_sizes/font_size = 70
+text = "Quit"
+
+[node name="Background" type="Sprite2D" parent="Quit"]
+show_behind_parent = true
+position = Vector2(209.625, 33.0001)
+scale = Vector2(1.8063, 1.86978)
+texture = ExtResource("3_yrbj2")
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

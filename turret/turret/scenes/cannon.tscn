@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://xtbcto8k0rkw"]
+[gd_scene load_steps=19 format=3 uid="uid://xtbcto8k0rkw"]
 
 [ext_resource type="Script" path="res://scripts/cannon.gd" id="1_l76yn"]
 [ext_resource type="Texture2D" uid="uid://donnmqf5gxtxm" path="res://assets/towerDefense_tilesheet@2.png" id="1_rjays"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="3_c1dhx"]
 [ext_resource type="Texture2D" uid="uid://d2fk2um2xow0y" path="res://assets/towerDefense_tilesheet@3.png" id="5_cjd1w"]
 [ext_resource type="AudioStream" uid="uid://bfdkenxhdytve" path="res://audio/sfx/Laser_Gun.wav" id="6_61drf"]
+[ext_resource type="Texture2D" uid="uid://jkevj5owxlr3" path="res://assets/allSprites_retina.png" id="7_jg1sq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6luh0"]
 atlas = ExtResource("3_c1dhx")
@@ -54,6 +55,41 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_37uj6"]
+atlas = ExtResource("7_jg1sq")
+region = Rect2(860, 92, 92, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpl46"]
+atlas = ExtResource("7_jg1sq")
+region = Rect2(765, 507, 113, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6q2p"]
+atlas = ExtResource("7_jg1sq")
+region = Rect2(640, 256, 127, 127)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_22w7b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6q2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uj6")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
 [node name="cannon" type="CharacterBody2D"]
 script = ExtResource("1_l76yn")
 bullet_scene = ExtResource("2_l7rtr")
@@ -89,3 +125,9 @@ show_percentage = false
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_61drf")
+
+[node name="Death" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_22w7b")
+frame = 2
+frame_progress = 0.846059

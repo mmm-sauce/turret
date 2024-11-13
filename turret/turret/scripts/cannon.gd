@@ -4,10 +4,11 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene  # Reference to the bullet scene
 var turnSpeed = 4  # Cannon rotation speed (*UPGRADEABLE!!!!)
 var barrel = 1  # Alternates between barrels for firing
-var maxHealth = 1 # Health
+var maxHealth = 500 # Health
 var isHeal = false # Is currently healing?
 var health = maxHealth
 var damage = 25
+
 
 # Shooting Mechanics
 var shots = 1  # Number of shots per burst (*UPGRADEABLE!!!!)
@@ -50,6 +51,8 @@ func _physics_process(delta: float) -> void:
 	# Death hanlding
 	if $HealthBar.value < 0.001:
 		game_over()
+		
+	
 	
 	$HealthBar.value = health
 	
@@ -77,7 +80,11 @@ func _physics_process(delta: float) -> void:
 	$HealthBar.rotation = -rotation
 
 func game_over():
-	pass
+	$Death.visible = true
+	$Death.play("Death")
+	get_node("../GameOver").game_over()
+
+	
 
 func rotate_towards_click(delta):
 	var angleDiff = clickAngle - rotation
@@ -122,3 +129,9 @@ func fire_bullet():
 
 	# Adding bullet as a child of main scene
 	get_parent().add_child(bullet)
+	
+		
+	
+
+	
+	

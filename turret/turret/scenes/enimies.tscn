@@ -98,6 +98,8 @@ shape = SubResource("CapsuleShape2D_q0611")
 visible = false
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_pbqhe")
+frame = 2
+frame_progress = 0.959437
 
 [node name="Marker2D" type="Marker2D" parent="Plane"]
 position = Vector2(73, 0)
@@ -241,6 +243,8 @@ shape = SubResource("RectangleShape2D_c6t6r")
 visible = false
 z_index = 4
 sprite_frames = SubResource("SpriteFrames_pbqhe")
+frame = 4
+frame_progress = 0.527621
 
 [node name="Marker2D" type="Marker2D" parent="Strong Tank"]
 position = Vector2(90, -3)
