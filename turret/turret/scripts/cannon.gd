@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene  # Reference to the bullet scene
 var turnSpeed = 4  # Cannon rotation speed (*UPGRADEABLE!!!!)
 var barrel = 1  # Alternates between barrels for firing
-var maxHealth = 200 # Health
+var maxHealth = 0 # Health
 #var isHeal = false # Is currently healing?
 var health = maxHealth
 var damage = 25
@@ -52,7 +52,8 @@ func _physics_process(delta: float) -> void:
 	
 	# Death hanlding
 	if $HealthBar.value < 0.001:
-		game_over()
+		pass
+		#game_over()
 		
 	
 	
@@ -81,10 +82,10 @@ func _physics_process(delta: float) -> void:
 	$HealthBar.global_position = global_position - Vector2(73, 125)
 	$HealthBar.rotation = -rotation
 
-func game_over():
-	$Death.visible = true
-	$Death.play("Death")
-	get_node("../GameOver").game_over()
+#func game_over():
+	#$Death.visible = true
+	#$Death.play("Death")
+	#get_node("../GameOver").game_over()
 
 	
 
@@ -134,6 +135,5 @@ func fire_bullet():
 	
 		
 	
-
-	
-	
+func _on_death_animation_finished() -> void:
+			queue_free()

@@ -4,9 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_vsobv"]
 [ext_resource type="PackedScene" uid="uid://cu6i4ku1ruqin" path="res://scenes/ui.tscn" id="4_qjdo3"]
-[ext_resource type="PackedScene" uid="uid://2c3dsoftnhcs" path="res://scenes/heal.tscn" id="7_23cjt"]
-[ext_resource type="PackedScene" uid="uid://2v0b1goyfxnv" path="res://scenes/enimies.tscn" id="7_25eth"]
-[ext_resource type="PackedScene" uid="uid://cf72djv7rs8sg" path="res://game_over.tscn" id="8_vndeo"]
+[ext_resource type="FontFile" uid="uid://b7jvr41u6swsj" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="8_0gxy6"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="9_g5me5"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="11_xcbr0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_me14v"]
@@ -1274,15 +1273,23 @@ tile_set = SubResource("TileSet_f6dyj")
 tile_map_data = PackedByteArray("AAAFAAEAAAARAAUAAAADAAEAAAAVAAUAAAABAAEAAAATAAUAAAAHAAIAAAAUAAUAAAACAAMAAAAPAAUAAAAEAA0AAAATAAUAAAABAA0AAAARAAUAAAAIAAgAAAATAAUAAAADAAsAAAAUAAUAAAAFAAYAAAATAAAAAAABAAgAAAAUAAAAAAAHAAUAAAAUAAAAAAAHAAsAAAAVAAAAAAA=")
 tile_set = SubResource("TileSet_f6dyj")
 
-[node name="UI" parent="." node_paths=PackedStringArray("cannon") instance=ExtResource("4_qjdo3")]
-visible = false
+[node name="UI" parent="." node_paths=PackedStringArray("cannon", "spawner") instance=ExtResource("4_qjdo3")]
 cannon = NodePath("../cannon")
 spawner = NodePath("../Spawner")
 
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("11_xcbr0")
-enemyScene = ExtResource("7_25eth")
-healScene = ExtResource("7_23cjt")
 
-[node name="GameOver" parent="." instance=ExtResource("8_vndeo")]
+[node name="Button" type="Button" parent="."]
+process_mode = 3
 visible = false
+z_index = 29
+offset_left = 144.12
+offset_top = 619.855
+offset_right = 963.125
+offset_bottom = 797.855
+theme = SubResource("Theme_4803t")
+text = "RESTART?"
+script = ExtResource("9_g5me5")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]

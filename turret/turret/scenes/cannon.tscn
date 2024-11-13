@@ -129,5 +129,5 @@ stream = ExtResource("6_61drf")
 [node name="Death" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_22w7b")
-frame = 2
-frame_progress = 0.846059
+
+[connection signal="animation_finished" from="Death" to="." method="_on_death_animation_finished"]

@@ -26,7 +26,6 @@ func _ready():
 	
 
 func game_over():
-	print("Game Over triggered")
 	get_tree().paused = true
 	self.show()
 	
