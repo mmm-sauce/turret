@@ -1,7 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://cf72djv7rs8sg"]
+[gd_scene load_steps=7 format=3 uid="uid://cf72djv7rs8sg"]
 
 [ext_resource type="Script" path="res://game_over.gd" id="1_lga86"]
 [ext_resource type="FontFile" uid="uid://b7jvr41u6swsj" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="2_8uj8j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bv861"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.823529, 0.792157, 0, 1)
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4l8q"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uqy1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.824432, 0.7923, 0, 1)
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ftj3"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="GameOver" type="CanvasLayer"]
 process_mode = 2
@@ -27,33 +57,37 @@ theme_override_fonts/font = ExtResource("2_8uj8j")
 theme_override_font_sizes/font_size = 120
 text = "Game Over"
 
-[node name="ColorRect" type="ColorRect" parent="Label"]
-layout_mode = 0
-offset_left = -193.0
-offset_top = -393.0
-offset_right = 892.0
-offset_bottom = 1528.0
-color = Color(0.788235, 0, 0.145098, 0.160784)
+[node name="Quit" type="Button" parent="Label"]
+offset_left = 54.0
+offset_top = 526.0
+offset_right = 666.0
+offset_bottom = 636.0
+theme_override_colors/font_hover_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_fonts/font = ExtResource("2_8uj8j")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_bv861")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b4l8q")
+text = "Quit
+"
 
 [node name="Start" type="Button" parent="Label"]
-layout_mode = 0
-offset_left = 120.0
-offset_top = 337.0
-offset_right = 557.0
-offset_bottom = 483.0
+offset_left = 50.0
+offset_top = 343.0
+offset_right = 664.0
+offset_bottom = 453.0
+theme_override_colors/font_hover_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.823529, 0.792157, 0, 1)
 theme_override_fonts/font = ExtResource("2_8uj8j")
-theme_override_font_sizes/font_size = 70
-text = "Restart"
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_2uqy1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4ftj3")
+text = "Start"
 
-[node name="Quit" type="Button" parent="Label"]
+[node name="ColorRect" type="ColorRect" parent="Label"]
 layout_mode = 0
-offset_left = 123.0
-offset_top = 514.0
-offset_right = 560.0
-offset_bottom = 660.0
-theme_override_fonts/font = ExtResource("2_8uj8j")
-theme_override_font_sizes/font_size = 70
-text = "Quit"
-
-[connection signal="pressed" from="Label/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Label/Quit" to="." method="_on_quit_pressed"]
+offset_left = -192.0
+offset_top = -389.0
+offset_right = 893.0
+offset_bottom = 1532.0
+color = Color(0.788235, 0, 0.145098, 0.160784)

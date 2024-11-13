@@ -1,4 +1,5 @@
-extends Label
+extends Control
+
 
 @export var tween_intensity: float
 @export var tween_duration: float
@@ -19,16 +20,4 @@ func btn_hovered(button: Button):
 	if button.is_hovered():
 		start_tween(button, "scale", Vector2.ONE * tween_intensity, tween_duration)
 	else: 
-		start_tween(button, "scale", Vector2.ONE, tween_duration)
-
-
-
-
-func _on_start_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
-	
-
-
-
-func _on_quit_pressed() -> void:
-	get_tree().quit()
+		start_tween(button,"scale", Vector2.ONE, tween_duration)
