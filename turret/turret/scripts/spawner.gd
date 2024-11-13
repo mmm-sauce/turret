@@ -9,7 +9,6 @@ extends Node2D
 # Constants
 const SPAWN_AREA_WIDTH: float = 1080.0
 const SPAWN_AREA_HEIGHT: float = 1920.0
-const MAX_HEALS: int = 3
 
 # Internal Variables
 var elapsed_time: float = 0.0
@@ -22,6 +21,7 @@ var heal_spawn_timer: float = 0.0
 var current_enemies: Array = [0, 0, 0, 0] # Plane, Strong Plane, Tank, Strong Tank
 var enemy_difficulties: Array = [1, 3, 5, 12]
 var spawn_chances: Array = [1.0, 0.333, 0.2, 0.0833]
+var true_spawn_chances: Array = [1.0, 0.333, 0.2, 0.0833]
 var enemy_names: Array = ["Plane", "Strong Plane", "Tank", "Strong Tank"]
 
 var current_heals: int = 0
@@ -32,11 +32,30 @@ var spawned = [] # Holds all spawned items
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	_spawn_enemy(0)
 	rng.randomize()
 	enemy_spawn_timer = spawn_interval
-	heal_spawn_timer = rng.randf_range(5.0, 15.0)
+	heal_spawn_timer = rng.randf_range(5.0, 7.0)
 
 func _process(delta: float) -> void:
+	for i in spawn_chances.size():
+		if i == 1:
+			if level < 1:
+				true_spawn_chances[i] = 0
+			else:
+				true_spawn_chances[i] = spawn_chances[i] / (level)
+		elif i == 2:
+			if level < 3:
+				true_spawn_chances[i] = 0
+			else:
+				true_spawn_chances[i] = spawn_chances[i] / (level / 2)
+		elif i == 3:
+			if level < 7:
+				true_spawn_chances[i] = 0
+			else:
+				true_spawn_chances[i] = spawn_chances[i] / level
+				
+	
 	if get_tree().paused:
 		return
 
@@ -58,12 +77,22 @@ func _process(delta: float) -> void:
 	if enemy_spawn_timer <= 0.0:
 		enemy_spawn_timer = spawn_interval
 		_attempt_spawn_enemy()
-
+	
+	print(heal_spawn_timer)
 	# Attempt to spawn a heal
-	if heal_spawn_timer <= 0.0 and current_heals < MAX_HEALS:
-		heal_spawn_timer = rng.randf_range(5.0, 15.0)
-		_spawn_heal()
-		current_heals += 1
+	if heal_spawn_timer <= 0.0:
+		var randA = randf_range(3.0, 4.0)
+		var randB = randf_range(4, 20/(current_heals+1))
+		print(randA)
+		print(randB)
+		print(current_heals)
+		heal_spawn_timer = 2.5
+		if randA * (current_heals^2 + 1) < randB:
+			print("SPAWN")
+			print("This:",randA * (current_heals^2 + 1))
+			current_heals += 1
+			_spawn_heal()
+
 
 func _attempt_spawn_enemy():
 	# Calculate total difficulty of current enemies
@@ -76,7 +105,7 @@ func _attempt_spawn_enemy():
 		return
 
 	# Choose an enemy type to spawn based on spawn chances
-	var enemy_type = rng.rand_weighted(spawn_chances)
+	var enemy_type = rng.rand_weighted(true_spawn_chances)
 	if enemy_difficulties[enemy_type] <= available_difficulty:
 		print("Attempting to spawn enemy type:", enemy_type)
 		_spawn_enemy(enemy_type)
@@ -174,7 +203,7 @@ func reset_game() -> void:
 
 func _spawn_heal():
 	var heal = heal_scene.instantiate()
-	heal.healAmount = baseHealAmount * (level*.1+1)
+	heal.healAmount = baseHealAmount * (level*.5+1)
 	heal.position = Vector2(
 		rng.randf_range(50.0, SPAWN_AREA_WIDTH - 50.0),
 		rng.randf_range(50.0, SPAWN_AREA_HEIGHT - 50.0)

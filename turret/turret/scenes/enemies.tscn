@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://c07bh54ch4tky"]
+[gd_scene load_steps=12 format=3 uid="uid://c07bh54ch4tky"]
 
+[ext_resource type="Script" path="res://scripts/enemies.gd" id="1_iy6ca"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_hdjkr"]
 [ext_resource type="AudioStream" uid="uid://b2soequfwjf68" path="res://audio/sfx/Explosion.wav" id="4_fo77d"]
 [ext_resource type="Texture2D" uid="uid://jkevj5owxlr3" path="res://assets/allSprites_retina.png" id="4_kahv5"]
@@ -51,6 +52,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="Enemies" type="Area2D"]
+script = ExtResource("1_iy6ca")
 
 [node name="Plane" type="Sprite2D" parent="."]
 z_index = 4

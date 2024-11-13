@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6k5bwpqrqkqy"]
+
+[ext_resource type="Script" path="res://start.gd" id="1_bnile"]
+[ext_resource type="FontFile" uid="uid://b7jvr41u6swsj" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="2_sqelo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shj3h"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.824432, 0.7923, 0, 1)
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hr6ma"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1x4oy"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.823529, 0.792157, 0, 1)
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vfum"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Start" type="Label"]
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 22.0
+script = ExtResource("1_bnile")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 900.0
+offset_right = 872.0
+offset_bottom = 1010.0
+theme_override_colors/font_hover_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_fonts/font = ExtResource("2_sqelo")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_shj3h")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hr6ma")
+text = "Start"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 267.0
+offset_top = 1122.0
+offset_right = 879.0
+offset_bottom = 1232.0
+theme_override_colors/font_hover_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.823529, 0.792157, 0, 1)
+theme_override_fonts/font = ExtResource("2_sqelo")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/hover = SubResource("StyleBoxFlat_1x4oy")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1vfum")
+text = "Quit
+"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
