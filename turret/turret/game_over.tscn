@@ -58,6 +58,7 @@ theme_override_font_sizes/font_size = 120
 text = "Game Over"
 
 [node name="Quit" type="Button" parent="Label"]
+layout_mode = 0
 offset_left = 54.0
 offset_top = 526.0
 offset_right = 666.0
@@ -72,6 +73,7 @@ text = "Quit
 "
 
 [node name="Start" type="Button" parent="Label"]
+layout_mode = 0
 offset_left = 50.0
 offset_top = 343.0
 offset_right = 664.0

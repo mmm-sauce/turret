@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://gcjbf48b3da0"]
+[gd_scene load_steps=14 format=4 uid="uid://gcjbf48b3da0"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0k4ww"]
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
 [ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="2_vsobv"]
 [ext_resource type="PackedScene" uid="uid://cu6i4ku1ruqin" path="res://scenes/ui.tscn" id="4_qjdo3"]
+[ext_resource type="PackedScene" uid="uid://2v0b1goyfxnv" path="res://scenes/enimies.tscn" id="6_420gb"]
+[ext_resource type="PackedScene" uid="uid://2c3dsoftnhcs" path="res://scenes/heal.tscn" id="7_q0gol"]
 [ext_resource type="FontFile" uid="uid://b7jvr41u6swsj" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="8_0gxy6"]
 [ext_resource type="PackedScene" uid="uid://cf72djv7rs8sg" path="res://game_over.tscn" id="8_243nj"]
 [ext_resource type="Script" path="res://scripts/button.gd" id="9_g5me5"]
@@ -1280,9 +1282,12 @@ spawner = NodePath("../Spawner")
 
 [node name="Spawner" type="Node2D" parent="."]
 script = ExtResource("11_xcbr0")
+enemy_scene = ExtResource("6_420gb")
+heal_scene = ExtResource("7_q0gol")
 
 [node name="Button" type="Button" parent="."]
 process_mode = 3
+visible = false
 z_index = 29
 offset_left = 144.12
 offset_top = 619.855

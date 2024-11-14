@@ -69,10 +69,11 @@ func _process(delta: float) -> void:
 		elapsed_time = 0.0
 		max_difficulty = level * 2 + 10
 
-		# Scale spawn_interval with level (minimum 1.0 seconds)
-		spawn_interval = clamp( 0.5 + 4.5 * exp(-0.3 * level), .5, 5.0)
+		
 		print("Level up to:", level, "New spawn interval:", spawn_interval)
-
+	# Scale spawn_interval with level (minimum .5 seconds)
+	spawn_interval = clamp( 0.5 + 4.5 * exp(-0.3 * level), .5, 5.0)
+		
 	# Attempt to spawn an enemy
 	if enemy_spawn_timer <= 0.0:
 		enemy_spawn_timer = spawn_interval
