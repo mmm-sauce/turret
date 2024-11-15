@@ -43,6 +43,8 @@ func _physics_process(delta: float) -> void:
 		#await get_tree().create_timer(.5).timeout
 		#isHeal = false
 	
+	$HealthBar.value = health
+	
 	$HealthBar.max_value = maxHealth
 	
 	if $HealthBar.value == maxHealth:
@@ -54,10 +56,6 @@ func _physics_process(delta: float) -> void:
 	if $HealthBar.value < 0.001:
 		pass
 		#game_over()
-		
-	
-	
-	$HealthBar.value = health
 	
 	update_shot_timer(delta)
 

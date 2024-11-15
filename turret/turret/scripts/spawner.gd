@@ -3,6 +3,7 @@ extends Node2D
 # Exported Variables
 @export var enemy_scene: PackedScene    # Reference to the enemy scene (enemies.tscn)
 @export var heal_scene: PackedScene     # Reference to the heal scene
+@export var coin_scene: PackedScene     # Reference to the coin scene
 @export var spawn_interval: float = 5.0 # Time between enemy spawns
 @export var level_duration: float = 30.0 # Time before level increases
 
@@ -17,6 +18,7 @@ var max_difficulty: int = 10
 
 var enemy_spawn_timer: float = 0.0
 var heal_spawn_timer: float = 0.0
+var coin_spawn_timer: float = 0.0
 
 var current_enemies: Array = [0, 0, 0, 0] # Plane, Strong Plane, Tank, Strong Tank
 var enemy_difficulties: Array = [1, 3, 5, 12]
@@ -25,7 +27,9 @@ var true_spawn_chances: Array = [1.0, 0.333, 0.2, 0.0833]
 var enemy_names: Array = ["Plane", "Strong Plane", "Tank", "Strong Tank"]
 
 var current_heals: int = 0
+var current_coins: int = 0
 var baseHealAmount = 50
+var baseCoinAmount = 4
 
 var spawned = [] # Holds all spawned items
 
@@ -36,6 +40,7 @@ func _ready():
 	rng.randomize()
 	enemy_spawn_timer = spawn_interval
 	heal_spawn_timer = rng.randf_range(5.0, 7.0)
+	coin_spawn_timer = rng.randf_range(5.0, 7.0)
 
 func _process(delta: float) -> void:
 	for i in spawn_chances.size():
@@ -62,7 +67,7 @@ func _process(delta: float) -> void:
 	elapsed_time += delta
 	enemy_spawn_timer -= delta
 	heal_spawn_timer -= delta
-
+	coin_spawn_timer -= delta
 	# Level up after level_duration seconds
 	if elapsed_time >= level_duration:
 		level += 1
@@ -93,6 +98,20 @@ func _process(delta: float) -> void:
 			print("This:",randA * (current_heals^2 + 1))
 			current_heals += 1
 			_spawn_heal()
+		
+	# Attempt to spawn a coin
+	if coin_spawn_timer <= 0.0:
+		var randA = randf_range(3.0, 4.0)
+		var randB = randf_range(4, 20/(current_coins+1))
+		print(randA)
+		print(randB)
+		print(current_coins)
+		coin_spawn_timer = 2.5
+		if randA * (current_coins^2 + 1) < randB:
+			print("SPAWN")
+			print("This:",randA * (current_coins^2 + 1))
+			current_coins += 1
+			_spawn_coin()
 
 
 func _attempt_spawn_enemy():
@@ -193,6 +212,7 @@ func reset_game() -> void:
 	
 	current_enemies = [0, 0, 0, 0]
 	current_heals = 0
+	current_coins = 0
 	
 	# Remove existing entities
 	for node in spawned:
@@ -211,3 +231,13 @@ func _spawn_heal():
 	)
 	get_parent().add_child(heal)
 	spawned.append(heal)
+
+func _spawn_coin():
+	var coin = coin_scene.instantiate()
+	coin.CoinAmount = baseCoinAmount * (level*.5+1)
+	coin.position = Vector2(
+		rng.randf_range(50.0, SPAWN_AREA_WIDTH - 50.0),
+		rng.randf_range(50.0, SPAWN_AREA_HEIGHT - 50.0)
+	)
+	get_parent().add_child(coin)
+	spawned.append(coin)

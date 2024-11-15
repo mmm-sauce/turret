@@ -58,7 +58,7 @@ func _on_turn_speed_pressed() -> void:
 
 func _on_shot_cd_pressed() -> void:
 	if get_parent().coins >= cdCost:
-		cannon.damage = cannon.damage*1.4
+		cannon.damage = round(cannon.damage*1.4)
 		get_parent().coins -= cdCost
 		cdCost += 5
 		$popupselect.play()

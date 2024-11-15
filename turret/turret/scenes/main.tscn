@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://gcjbf48b3da0"]
+[gd_scene load_steps=15 format=4 uid="uid://gcjbf48b3da0"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_0k4ww"]
 [ext_resource type="PackedScene" uid="uid://xtbcto8k0rkw" path="res://scenes/cannon.tscn" id="1_hxedp"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://2c3dsoftnhcs" path="res://scenes/heal.tscn" id="7_q0gol"]
 [ext_resource type="FontFile" uid="uid://b7jvr41u6swsj" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="8_0gxy6"]
 [ext_resource type="PackedScene" uid="uid://cf72djv7rs8sg" path="res://game_over.tscn" id="8_243nj"]
+[ext_resource type="PackedScene" uid="uid://cq7jpycyop0lb" path="res://scenes/Coin.tscn" id="8_mdokj"]
 [ext_resource type="Script" path="res://scripts/button.gd" id="9_g5me5"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="11_xcbr0"]
 
@@ -1284,6 +1285,7 @@ spawner = NodePath("../Spawner")
 script = ExtResource("11_xcbr0")
 enemy_scene = ExtResource("6_420gb")
 heal_scene = ExtResource("7_q0gol")
+coin_scene = ExtResource("8_mdokj")
 
 [node name="Button" type="Button" parent="."]
 process_mode = 3

@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://cq7jpycyop0lb"]
+
+[ext_resource type="Script" path="res://scripts/coin.gd" id="1_4r5f5"]
+[ext_resource type="Texture2D" uid="uid://jkevj5owxlr3" path="res://assets/allSprites_retina.png" id="2_yeh12"]
+[ext_resource type="Texture2D" uid="uid://to4wv1hcu7o2" path="res://assets/towerDefense_tilesheet@1.png" id="3_uaf1i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37uj6"]
+atlas = ExtResource("2_yeh12")
+region = Rect2(860, 92, 92, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpl46"]
+atlas = ExtResource("2_yeh12")
+region = Rect2(765, 507, 113, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6q2p"]
+atlas = ExtResource("2_yeh12")
+region = Rect2(640, 256, 127, 127)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6v1lo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uj6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6q2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uj6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n8xav"]
+radius = 49.0102
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_4r5f5")
+
+[node name="Explosion" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_6v1lo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 12)
+scale = Vector2(2.50275, 2.37755)
+texture = ExtResource("3_uaf1i")
+region_enabled = true
+region_rect = Rect2(2451.99, 1428.61, 91.1401, 98.735)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n8xav")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
