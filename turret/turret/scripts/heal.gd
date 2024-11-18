@@ -12,7 +12,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if global_position.distance_to(Vector2(540, 960)) < 50.0:
+	if global_position.distance_to(Vector2(540, 960)) < 100.0:
 		queue_free()
 	
 

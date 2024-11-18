@@ -29,7 +29,7 @@ var enemy_names: Array = ["Plane", "Strong Plane", "Tank", "Strong Tank"]
 var current_heals: int = 0
 var current_coins: int = 0
 var baseHealAmount = 50
-var baseCoinAmount = 4
+var baseCoinAmount = 2
 
 var spawned = [] # Holds all spawned items
 
@@ -45,20 +45,20 @@ func _ready():
 func _process(delta: float) -> void:
 	for i in spawn_chances.size():
 		if i == 1:
-			if level < 1:
-				true_spawn_chances[i] = 0
-			else:
-				true_spawn_chances[i] = spawn_chances[i] / (level)
-		elif i == 2:
-			if level < 3:
+			if level <= 1:
 				true_spawn_chances[i] = 0
 			else:
 				true_spawn_chances[i] = spawn_chances[i] / (level / 2)
-		elif i == 3:
-			if level < 7:
+		elif i == 2:
+			if level <= 3:
 				true_spawn_chances[i] = 0
 			else:
-				true_spawn_chances[i] = spawn_chances[i] / level
+				true_spawn_chances[i] = spawn_chances[i] * (level / 2)
+		elif i == 3:
+			if level <= 5:
+				true_spawn_chances[i] = 0
+			else:
+				true_spawn_chances[i] = spawn_chances[i] * level
 				
 	
 	if get_tree().paused:
@@ -84,28 +84,22 @@ func _process(delta: float) -> void:
 		enemy_spawn_timer = spawn_interval
 		_attempt_spawn_enemy()
 	
-	print(heal_spawn_timer)
 	# Attempt to spawn a heal
 	if heal_spawn_timer <= 0.0:
 		var randA = randf_range(3.0, 4.0)
 		var randB = randf_range(4, 20/(current_heals+1))
-		print(randA)
-		print(randB)
-		print(current_heals)
 		heal_spawn_timer = 2.5
 		if randA * (current_heals^2 + 1) < randB:
 			print("SPAWN")
 			print("This:",randA * (current_heals^2 + 1))
 			current_heals += 1
 			_spawn_heal()
+	print(current_heals)
 		
 	# Attempt to spawn a coin
 	if coin_spawn_timer <= 0.0:
 		var randA = randf_range(3.0, 4.0)
 		var randB = randf_range(4, 20/(current_coins+1))
-		print(randA)
-		print(randB)
-		print(current_coins)
 		coin_spawn_timer = 2.5
 		if randA * (current_coins^2 + 1) < randB:
 			print("SPAWN")

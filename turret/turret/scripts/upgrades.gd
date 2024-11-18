@@ -50,7 +50,7 @@ func reset():
 
 func _on_turn_speed_pressed() -> void:
 	if get_parent().coins >= tsCost:
-		cannon.turnSpeed += 2
+		cannon.turnSpeed += .5
 		get_parent().coins -= tsCost
 		tsCost += 5
 		$popupselect.play()
@@ -58,7 +58,7 @@ func _on_turn_speed_pressed() -> void:
 
 func _on_shot_cd_pressed() -> void:
 	if get_parent().coins >= cdCost:
-		cannon.damage = round(cannon.damage*1.4)
+		cannon.damage = round(cannon.damage*1.2+25)
 		get_parent().coins -= cdCost
 		cdCost += 5
 		$popupselect.play()
@@ -91,12 +91,12 @@ func _on_popup_pressed() -> void:
 			for i in range(0, 51, 1):
 				await get_tree().create_timer(.005).timeout
 				
-				Vseperation = EasingFunctions.ease_in_out_cubic(0, -100, float(i)/100)
+				Vseperation = EasingFunctions.ease_in_out_cubic(0, -100, float(i)/50)
 			popup = false
 		else:
 			popup = true
 			for i in range(0, 51, 1):
 				await get_tree().create_timer(.005).timeout
-				Vseperation = EasingFunctions.ease_out_bounce(-100, 0, float(i)/100)
+				Vseperation = EasingFunctions.ease_out_bounce(-100, 0, float(i)/50)
 		popping = false
 		$popupclose.play()

@@ -25,14 +25,14 @@ func _ready() -> void:
 	# Initialize enemy properties based on enemy_type
 	match enemy_type:
 		0:  # Plane
-			health = 50
 			max_health = 50
+			health =  (get_parent().get_node("Spawner").level * .1 + 1) * 50
 			damage = 10
 			speed = 300.0
 			shot_timer = .3
 		1:  # Strong Plane
-			health = 150
-			max_health = 150
+			max_health =  (get_parent().get_node("Spawner").level * .1 + 1) * 150
+			health = max_health
 			damage = 40
 			speed = 200.0
 			shot_timer = 1

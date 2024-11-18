@@ -15,6 +15,6 @@ func _on_button_pressed() -> void:
 	get_parent().get_node("UI").visible = true
 	get_parent().coins = 0
 	get_parent().get_node("UI").reset()
-	get_parent().get_node("cannon").health = 500
+	get_parent().get_node("cannon").maxHealth = 200
 	await get_tree().create_timer(1).timeout
-	get_parent().get_node("cannon").health = 500
+	get_parent().get_node("cannon").health = 200
